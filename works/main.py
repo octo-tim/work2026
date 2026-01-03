@@ -961,7 +961,10 @@ async def upload_task_file(task_id: int, file: UploadFile = File(...), db: Sessi
 async def delete_project(project_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     """프로젝트 삭제 - async와 Request를 사용하여 FastAPI Form 파싱 완전 우회"""
     # Request body를 명시적으로 읽어서 FastAPI가 Form 파싱을 시도하지 않도록 함
-    await request.body()
+    try:
+        await request.body()
+    except Exception as e:
+        print(f"Request body 읽기 오류 (무시 가능): {e}")
     
     if not current_user:
         return RedirectResponse(url="/login", status_code=303)
@@ -982,6 +985,9 @@ async def delete_project(project_id: int, request: Request, db: Session = Depend
         # 프로젝트 삭제
         db.delete(project)
         db.commit()
+        print(f"프로젝트 {project_id} 삭제 완료")
+    else:
+        print(f"프로젝트 {project_id}를 찾을 수 없습니다")
     
     return RedirectResponse(url="/projects", status_code=303)
 

@@ -703,9 +703,51 @@
     }
 
     function deleteProject() {
-        if (confirm('정말 이 프로젝트를 삭제하시겠습니까?')) {
-            document.getElementById('deleteProjectForm').submit();
+        const form = document.getElementById('deleteProjectForm');
+        if (form && form.action) {
+            const projectId = form.action.split('/').filter(p => p && p !== 'delete' && p !== 'projects').pop();
+            if (projectId) {
+                deleteProjectById(projectId);
+            } else {
+                alert('프로젝트 ID를 찾을 수 없습니다.');
+            }
         }
+    }
+
+    function deleteProjectById(projectId) {
+        if (!projectId) {
+            alert('프로젝트 ID를 찾을 수 없습니다.');
+            return;
+        }
+
+        if (!confirm('정말 이 프로젝트를 삭제하시겠습니까?')) {
+            return;
+        }
+
+        // fetch API를 사용하여 삭제 요청 (Form 데이터 없이)
+        fetch(`/projects/${projectId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            credentials: 'include' // 쿠키 포함
+        })
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            } else if (response.ok) {
+                window.location.reload();
+            } else {
+                return response.json().then(data => {
+                    console.error('삭제 오류:', data);
+                    alert('프로젝트 삭제 중 오류가 발생했습니다.');
+                });
+            }
+        })
+        .catch(error => {
+            console.error('삭제 오류:', error);
+            alert('프로젝트 삭제 중 오류가 발생했습니다: ' + error.message);
+        });
     }
 
     function closeEditProjectModal() {
@@ -908,7 +950,7 @@
                     class="flex-1 bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">저장</button>
                 <!-- Link separate delete logic manually or via js logic -->
                 <button type="button"
-                    onclick="if(confirm('정말 삭제하시겠습니까?')) { document.getElementById('deleteProjectForm').submit(); }"
+                    onclick="deleteProjectById({{ p.id if 'p' in locals() else 'null' }})"
                     class="bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition">삭제</button>
             </div>
         </form>

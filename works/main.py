@@ -958,8 +958,8 @@ async def upload_task_file(task_id: int, file: UploadFile = File(...), db: Sessi
 
 
 @app.post("/projects/{project_id}/delete", response_class=RedirectResponse)
-def delete_project(project_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    """프로젝트 삭제 - Form 파라미터 없이 동작 (delete_user와 동일한 방식)"""
+def delete_project(project_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    """프로젝트 삭제 - Request를 사용하여 FastAPI Form 파싱 우회"""
     if not current_user:
         return RedirectResponse(url="/login", status_code=303)
     

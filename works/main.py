@@ -959,13 +959,9 @@ async def upload_task_file(task_id: int, file: UploadFile = File(...), db: Sessi
 
 
 
-@app.post("/projects/{project_id}/delete", response_class=RedirectResponse)
-async def delete_project(project_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+@app.get("/projects/{project_id}/delete", response_class=RedirectResponse)
+def delete_project(project_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     print(f"[DELETE PROJECT] 삭제 라우트 호출됨: project_id={project_id}")
-    try:
-        await request.body()
-    except Exception:
-        pass
 
     if not current_user:
         return RedirectResponse(url="/login", status_code=303)

@@ -316,14 +316,7 @@
             // 전역 변수에 현재 프로젝트 ID 저장 (삭제 버튼에서 사용)
             window.currentProjectId = id;
             
-            // 삭제 버튼에 projectId를 data 속성으로 저장
-            const deleteBtn = document.getElementById('deleteProjectBtn');
-            if (deleteBtn) {
-                deleteBtn.setAttribute('data-project-id', id);
-                console.log('Set deleteProjectBtn data-project-id to:', id);
-            } else {
-                console.warn('deleteProjectBtn not found');
-            }
+            // 삭제 링크는 confirmDeleteProject 함수에서 처리
             
             if (id) {
                 const setAction = (formId, url) => {
@@ -340,41 +333,14 @@
                 };
                 setAction('editProjectForm', "/projects/" + id + "/update");
                 setAction('uploadForm', "/projects/" + id + "/upload"); // 선택적
-                setAction('deleteProjectForm', "/projects/" + id + "/delete");
                 
-                // 삭제 form에 submit 핸들러 연결
-                const deleteForm = document.getElementById('deleteProjectForm');
-                const deleteBtn = document.getElementById('deleteProjectBtn');
-                if (deleteForm) {
-                    // 기존 핸들러 제거
-                    deleteForm.onsubmit = null;
-                    deleteForm.removeEventListener('submit', handleDeleteFormSubmit);
-                    // 새 핸들러 추가
-                    deleteForm.addEventListener('submit', handleDeleteFormSubmit);
-                    console.log('[DELETE] 삭제 form 핸들러 연결됨, action:', deleteForm.action);
-                    
-                    // 삭제 버튼에 직접 클릭 핸들러 추가 (action 확인 및 설정)
-                    if (deleteBtn) {
-                        deleteBtn.onclick = function(e) {
-                            // action이 설정되어 있는지 확인
-                            if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname) {
-                                // action을 다시 설정
-                                const projectId = window.currentProjectId || deleteBtn.getAttribute('data-project-id');
-                                if (projectId) {
-                                    deleteForm.action = `/projects/${projectId}/delete`;
-                                    console.log('[DELETE] 삭제 form action 재설정:', deleteForm.action);
-                                } else {
-                                    console.error('[DELETE] 프로젝트 ID를 찾을 수 없습니다.');
-                                    alert('프로젝트 ID를 찾을 수 없습니다.');
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    return false;
-                                }
-                            }
-                        };
-                    }
+                // 삭제 링크 href 설정
+                const deleteLink = document.getElementById('deleteProjectLink');
+                if (deleteLink) {
+                    deleteLink.href = "/projects/" + id + "/delete";
+                    console.log('[DELETE] 삭제 링크 href 설정:', deleteLink.href);
                 } else {
-                    console.error('[DELETE] deleteProjectForm을 찾을 수 없습니다.');
+                    console.error('[DELETE] deleteProjectLink을 찾을 수 없습니다.');
                 }
 
                 // Verify form action was set and attach submit handler
@@ -389,15 +355,6 @@
                         fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editForm-submit-initial',message:'editProjectForm submit event triggered',data:{formAction:this.action,submitterId:event.submitter?.id,submitterType:event.submitter?.type},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'E'})}).catch(()=>{});
                         // #endregion
                         
-                        // 삭제 버튼 클릭으로 인한 form 제출 방지
-                        if (event.submitter && (event.submitter.id === 'deleteProjectBtn' || event.submitter.closest('#deleteProjectBtn'))) {
-                            // #region agent log
-                            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editForm-submit-prevent',message:'preventing form submit from delete button',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'E'})}).catch(()=>{});
-                            // #endregion
-                            event.preventDefault();
-                            event.stopPropagation();
-                            return false;
-                        }
                         
                         const form = this;
                         const deptSelect = document.getElementById('edit_department');
@@ -461,14 +418,7 @@
                 // 전역 변수에 현재 프로젝트 ID 저장
                 window.currentProjectId = id;
                 
-                // 삭제 버튼에 projectId를 data 속성으로 저장 (모달 이동 후에도 유지)
-                const deleteBtn = document.getElementById('deleteProjectBtn');
-                if (deleteBtn) {
-                    deleteBtn.setAttribute('data-project-id', id);
-                    console.log('Re-set deleteProjectBtn data-project-id to:', id, 'after modal move');
-                } else {
-                    console.warn('deleteProjectBtn not found after modal move');
-                }
+                // 삭제 링크는 confirmDeleteProject 함수에서 처리
                 
                 if (id) {
                     const setAction = (formId, url) => {
@@ -485,41 +435,14 @@
                     };
                     setAction('editProjectForm', "/projects/" + id + "/update");
                     setAction('uploadForm', "/projects/" + id + "/upload"); // 선택적
-                    setAction('deleteProjectForm', "/projects/" + id + "/delete");
                     
-                    // 삭제 form에 submit 핸들러 연결 (모달 이동 후)
-                    const deleteForm = document.getElementById('deleteProjectForm');
-                    const deleteBtn = document.getElementById('deleteProjectBtn');
-                    if (deleteForm) {
-                        // 기존 핸들러 제거
-                        deleteForm.onsubmit = null;
-                        deleteForm.removeEventListener('submit', handleDeleteFormSubmit);
-                        // 새 핸들러 추가
-                        deleteForm.addEventListener('submit', handleDeleteFormSubmit);
-                        console.log('[DELETE] 삭제 form 핸들러 재연결됨 (모달 이동 후), action:', deleteForm.action);
-                        
-                        // 삭제 버튼에 직접 클릭 핸들러 추가 (action 확인 및 설정)
-                        if (deleteBtn) {
-                            deleteBtn.onclick = function(e) {
-                                // action이 설정되어 있는지 확인
-                                if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname) {
-                                    // action을 다시 설정
-                                    const projectId = window.currentProjectId || deleteBtn.getAttribute('data-project-id');
-                                    if (projectId) {
-                                        deleteForm.action = `/projects/${projectId}/delete`;
-                                        console.log('[DELETE] 삭제 form action 재설정 (모달 이동 후):', deleteForm.action);
-                                    } else {
-                                        console.error('[DELETE] 프로젝트 ID를 찾을 수 없습니다 (모달 이동 후).');
-                                        alert('프로젝트 ID를 찾을 수 없습니다.');
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        return false;
-                                    }
-                                }
-                            };
-                        }
+                    // 삭제 링크 href 설정 (모달 이동 후)
+                    const deleteLink = document.getElementById('deleteProjectLink');
+                    if (deleteLink) {
+                        deleteLink.href = "/projects/" + id + "/delete";
+                        console.log('[DELETE] 삭제 링크 href 재설정 (모달 이동 후):', deleteLink.href);
                     } else {
-                        console.error('[DELETE] deleteProjectForm을 찾을 수 없습니다 (모달 이동 후).');
+                        console.error('[DELETE] deleteProjectLink을 찾을 수 없습니다 (모달 이동 후).');
                     }
 
                     // Re-attach onsubmit event handler after modal move
@@ -569,15 +492,7 @@
                             console.log('Department select element:', deptSelect);
                             console.log('Department value:', deptSelect?.value);
                             
-                            // 삭제 버튼 클릭으로 인한 form 제출 방지
-                            if (event.submitter && event.submitter.id === 'deleteProjectBtn') {
-                                // #region agent log
-                                fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editForm-submit-after-move-prevent',message:'preventing form submit from delete button after modal move',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-                                // #endregion
-                                event.preventDefault();
-                                event.stopPropagation();
-                                return false;
-                            }
+                            // 삭제는 링크로 처리되므로 이 체크는 더 이상 필요 없음
 
                             // Get all form data
                             const formData = new FormData(form);
@@ -607,32 +522,6 @@
                         console.error('editProjectForm not found after modal move!');
                     }
                     
-                    // Re-attach delete button handler after modal move
-                    requestAnimationFrame(() => {
-                        const deleteBtn = document.getElementById('deleteProjectBtn');
-                        if (deleteBtn) {
-                            // Remove any existing handlers
-                            deleteBtn.onclick = null;
-                            if (window.handleDeleteButtonClick) {
-                                deleteBtn.removeEventListener('click', window.handleDeleteButtonClick, true);
-                            }
-                            
-                            // Create handler function
-                            window.handleDeleteButtonClick = function (event) {
-                                console.log('=== DELETE BUTTON CLICKED (after modal move) ===');
-                                event.preventDefault();
-                                event.stopPropagation();
-                                deleteProject();
-                                return false;
-                            };
-                            
-                            // Attach handler with capture phase
-                            deleteBtn.addEventListener('click', window.handleDeleteButtonClick, true);
-                            console.log('✓ Delete button click handler re-attached after modal move');
-                        } else {
-                            console.warn('deleteProjectBtn not found after modal move');
-                        }
-                    });
                 }
             }
 
@@ -852,43 +741,16 @@
         }
     }
 
-    // 삭제 form submit 핸들러
-    function handleDeleteFormSubmit(event) {
+    // 삭제 링크 클릭 핸들러
+    function confirmDeleteProject(event, linkElement) {
         event.preventDefault();
         event.stopPropagation();
         
-        const deleteForm = document.getElementById('deleteProjectForm');
-        if (!deleteForm) {
-            console.error('[DELETE] 삭제 form을 찾을 수 없습니다.');
-            alert('프로젝트 삭제 form을 찾을 수 없습니다.');
-            return false;
-        }
-        
-        // project_id를 다시 확인하고 action 설정
+        // project_id 확인
         let projectId = window.currentProjectId;
-        if (!projectId) {
-            // 삭제 버튼의 data 속성에서 가져오기
-            const deleteBtn = document.getElementById('deleteProjectBtn');
-            if (deleteBtn) {
-                projectId = deleteBtn.getAttribute('data-project-id');
-            }
-        }
-        
         if (!projectId) {
             console.error('[DELETE] 프로젝트 ID를 찾을 수 없습니다.');
             alert('프로젝트 ID를 찾을 수 없습니다. 페이지를 새로고침 후 다시 시도해주세요.');
-            return false;
-        }
-        
-        // action을 명시적으로 설정
-        const deleteUrl = `/projects/${projectId}/delete`;
-        deleteForm.action = deleteUrl;
-        console.log('[DELETE] 삭제 form action 설정:', deleteForm.action);
-        
-        // action이 올바르게 설정되었는지 최종 확인
-        if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname || !deleteForm.action.includes('/delete')) {
-            console.error('[DELETE] 삭제 form의 action이 올바르게 설정되지 않았습니다. action:', deleteForm.action);
-            alert('삭제 URL을 설정할 수 없습니다. 페이지를 새로고침 후 다시 시도해주세요.');
             return false;
         }
         
@@ -897,74 +759,14 @@
             return false;
         }
         
-        console.log('[DELETE] 삭제 확인됨, form 제출:', deleteForm.action);
-        
-        // form 제출
-        deleteForm.submit();
+        // 링크 href 설정 및 이동
+        const deleteUrl = `/projects/${projectId}/delete`;
+        linkElement.href = deleteUrl;
+        console.log('[DELETE] 삭제 링크 이동:', deleteUrl);
+        window.location.href = deleteUrl;
         return false;
     }
 
-    function deleteProject() {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:758',message:'deleteProject called',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run3',hypothesisId:'A'})}).catch(()=>{});
-        // #endregion
-        // 삭제 버튼 클릭 플래그 설정
-        window.deleteButtonClicked = true;
-        console.log('=== deleteProject called ===');
-        
-        // 1. 삭제 버튼의 data 속성에서 projectId 가져오기 (가장 확실)
-        const deleteBtn = document.getElementById('deleteProjectBtn');
-        let projectId = deleteBtn?.getAttribute('data-project-id');
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:763',message:'projectId from data attribute',data:{projectId:projectId,deleteBtnExists:!!deleteBtn},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        // #endregion
-        console.log('projectId from deleteBtn data attribute:', projectId);
-        
-        // 2. 전역 변수에서 projectId 가져오기
-        if (!projectId) {
-            projectId = window.currentProjectId;
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:768',message:'projectId from window.currentProjectId',data:{projectId:projectId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-            // #endregion
-            console.log('projectId from window.currentProjectId:', projectId);
-        }
-        
-        // 3. 전역 변수가 없으면 form에서 추출 시도
-        if (!projectId) {
-            const form = document.getElementById('deleteProjectForm');
-            console.log('deleteProjectForm:', form, 'action:', form?.action);
-            if (form && form.action) {
-                // form.action에서 projectId 추출: "/projects/123/delete" -> "123"
-                const actionParts = form.action.split('/').filter(p => p);
-                const projectsIndex = actionParts.indexOf('projects');
-                
-                if (projectsIndex !== -1 && projectsIndex + 1 < actionParts.length) {
-                    projectId = actionParts[projectsIndex + 1];
-                    // #region agent log
-                    fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:783',message:'projectId extracted from form.action',data:{projectId:projectId,formAction:form.action},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-                    // #endregion
-                    console.log('Extracted projectId from form.action:', projectId);
-                }
-            }
-        }
-        
-        if (!projectId) {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:788',message:'projectId not found',data:{deleteBtnExists:!!deleteBtn,currentProjectId:window.currentProjectId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-            // #endregion
-            console.error('프로젝트 ID를 찾을 수 없습니다.');
-            console.error('deleteBtn:', deleteBtn);
-            console.error('window.currentProjectId:', window.currentProjectId);
-            alert('프로젝트 ID를 찾을 수 없습니다.');
-            return;
-        }
-        
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:796',message:'calling deleteProjectById',data:{projectId:projectId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-        // #endregion
-        console.log('Deleting project ID:', projectId);
-        deleteProjectById(projectId);
-    }
 
 
     function closeEditProjectModal() {
@@ -1098,17 +900,7 @@
             // #region agent log
             fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editProjectForm-onsubmit',message:'editProjectForm submit triggered',data:{action:this.action,submitterId:event.submitter?.id,deleteButtonClicked:window.deleteButtonClicked},timestamp:Date.now(),sessionId:'debug-session',runId:'run3',hypothesisId:'E'})}).catch(()=>{});
             // #endregion
-            // 삭제 버튼 클릭으로 인한 form 제출 방지
-            if (window.deleteButtonClicked || (event.submitter && (event.submitter.id === 'deleteProjectBtn' || event.submitter.closest('#deleteProjectBtn')))) {
-                // #region agent log
-                fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editProjectForm-onsubmit-prevent',message:'preventing form submit from delete button in onsubmit',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run3',hypothesisId:'E'})}).catch(()=>{});
-                // #endregion
-                window.deleteButtonClicked = false; // 플래그 리셋
-                event.preventDefault();
-                event.stopPropagation();
-                return false;
-            }
-            window.deleteButtonClicked = false; // 플래그 리셋
+            // 삭제는 링크로 처리되므로 이 체크는 더 이상 필요 없음
             return true;
         ">
             <div>
@@ -1183,11 +975,12 @@
                     class="flex-1 bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">저장</button>
             </div>
         </form>
-        <!-- 삭제 버튼을 별도 form으로 분리하여 form 제출 방지 -->
-        <form id="deleteProjectForm" method="post" action="" class="px-6 pt-2">
-            <button type="submit" id="deleteProjectBtn"
-                class="w-full bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition">삭제</button>
-        </form>
+        <!-- 삭제 링크 -->
+        <div class="px-6 pt-2">
+            <a href="" id="deleteProjectLink" 
+                onclick="return confirmDeleteProject(event, this);"
+                class="block w-full bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition text-center">삭제</a>
+        </div>
     </div>
 </div>
 {% endblock %}

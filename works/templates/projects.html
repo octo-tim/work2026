@@ -724,12 +724,13 @@
             return;
         }
 
-        // fetch API를 사용하여 삭제 요청 (Form 데이터 없이)
+        // fetch API를 사용하여 삭제 요청 (빈 body로 전송)
         fetch(`/projects/${projectId}/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
+            body: '', // 빈 body 명시적으로 전송
             credentials: 'include' // 쿠키 포함
         })
         .then(response => {

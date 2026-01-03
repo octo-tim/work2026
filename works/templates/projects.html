@@ -47,12 +47,18 @@
                                 data-file-paths='{{ p.files|map(attribute="filepath")|list|tojson|forceescape }}'>
                                 {{ p.name }}</td>
                             <td class="px-6 py-4">
-                                {% if p.department == 'System' %}
+                                {% if p.department == '시스템사업부' %}
                                 <span
-                                    class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full font-bold">시스템</span>
-                                {% elif p.department == 'Distribution' %}
+                                    class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full font-bold">시스템사업부</span>
+                                {% elif p.department == '유통사업부' %}
                                 <span
-                                    class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-bold">유통</span>
+                                    class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-bold">유통사업부</span>
+                                {% elif p.department == '경영지원팀' %}
+                                <span
+                                    class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">경영지원팀</span>
+                                {% elif p.department %}
+                                <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-bold">{{
+                                    p.department }}</span>
                                 {% else %}
                                 <span class="text-gray-400">-</span>
                                 {% endif %}
@@ -108,12 +114,18 @@
                                 data-file-paths='{{ p.files|map(attribute="filepath")|list|tojson|forceescape }}'>
                                 {{ p.name }}</td>
                             <td class="px-6 py-4">
-                                {% if p.department == 'System' %}
+                                {% if p.department == '시스템사업부' %}
                                 <span
-                                    class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full font-bold">시스템</span>
-                                {% elif p.department == 'Distribution' %}
+                                    class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full font-bold">시스템사업부</span>
+                                {% elif p.department == '유통사업부' %}
                                 <span
-                                    class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-bold">유통</span>
+                                    class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-bold">유통사업부</span>
+                                {% elif p.department == '경영지원팀' %}
+                                <span
+                                    class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">경영지원팀</span>
+                                {% elif p.department %}
+                                <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-bold">{{
+                                    p.department }}</span>
                                 {% else %}
                                 <span class="text-gray-400">-</span>
                                 {% endif %}

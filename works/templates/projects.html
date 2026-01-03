@@ -172,16 +172,7 @@
                                 data-file-paths='{{ p.files|map(attribute="filepath")|list|tojson|forceescape }}'>
                                 {{ p.name }}</td>
                             <td class="px-6 py-4">
-                                {% if p.department == '시스템사업부' %}
-                                <span
-                                    class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full font-bold">시스템</span>
-                                {% elif p.department == '유통사업부' %}
-                                <span
-                                    class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-bold">유통</span>
-                                {% else %}
-                                <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-bold">{{
-                                    p.department or '-' }}</span>
-                                {% endif %}
+                                {{ render_department(p.department) }}
                             </td>
 
                             <td class="px-6 py-4">
@@ -245,7 +236,22 @@
             setValue('edit_name', ds.name || '');
             setValue('edit_description', ds.description || '');
             setValue('edit_status', ds.status || 'Scheduled');
-            setValue('edit_department', ds.department || '');
+            
+            // Department 값 설정 및 디버그
+            const departmentValue = ds.department || '';
+            console.log('[DEBUG] Setting department value from data-department:', departmentValue, 'Type:', typeof departmentValue);
+            setValue('edit_department', departmentValue);
+            
+            // Department select 요소 확인
+            const deptSelectAfterSet = document.getElementById('edit_department');
+            if (deptSelectAfterSet) {
+                console.log('[DEBUG] Department select after setValue:', {
+                    value: deptSelectAfterSet.value,
+                    selectedIndex: deptSelectAfterSet.selectedIndex,
+                    options: Array.from(deptSelectAfterSet.options).map(opt => ({ value: opt.value, text: opt.text, selected: opt.selected }))
+                });
+            }
+            
             // data-start-date는 startDate로, data-end-date는 endDate로 접근
             // 혹시 모를 경우를 대비해 getAttribute로도 시도
             const startDate = ds.startDate || el.getAttribute('data-start-date') || '';
@@ -510,7 +516,12 @@
                         }
 
                         console.log('Form action:', form.action);
+                        console.log('Department select element:', deptSelect);
+                        console.log('Department selectedIndex:', deptSelect.selectedIndex);
+                        console.log('Department selected option:', deptSelect.options[deptSelect.selectedIndex]);
                         console.log('Department value:', deptSelect.value);
+                        console.log('Department value type:', typeof deptSelect.value);
+                        console.log('Department value length:', deptSelect.value ? deptSelect.value.length : 0);
 
                         // Ensure department select has the correct value
                         if (!deptSelect.value) {

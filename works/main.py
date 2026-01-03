@@ -764,19 +764,22 @@ def update_project(project_id: int,
     s_date = utils.parse_date(start_date, "%Y-%m") if start_date else None
     e_date = utils.parse_date(end_date, "%Y-%m") if end_date else None
     
-    # Department 처리
-    project.department = utils.normalize_department(department)
+    # Department 처리: 빈 문자열을 None으로 변환하고 디버그 로그 추가
+    department_value = utils.normalize_department(department)
+    print(f"[DEBUG] Updating project {project_id}: department received = '{department}', processed = '{department_value}'")
     
     project.name = name
     project.description = description
     project.start_date = s_date
     project.end_date = e_date
     project.status = status
+    project.department = department_value
     
     # 담당자 목록 업데이트
-    utils.update_assignees(db, project, assignee_ids)
+    update_assignees(db, project, assignee_ids)
     
     db.commit()
+    print(f"[DEBUG] Project {project_id} updated: department = '{project.department}'")
     return RedirectResponse(url="/projects", status_code=303)
 
 
@@ -909,7 +912,7 @@ def update_task_details(task_id: int,
     task.department = utils.normalize_department(department)
     
     # 담당자 업데이트
-    utils.update_assignees(db, task, assignee_ids, 'assignee_id')
+    update_assignees(db, task, assignee_ids, 'assignee_id')
     db.commit()
     return RedirectResponse(url="/tasks", status_code=303)
 

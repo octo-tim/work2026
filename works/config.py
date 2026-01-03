@@ -1,8 +1,11 @@
 """애플리케이션 설정 및 상수"""
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+# .env 파일 경로를 명시적으로 지정 (애플리케이션 루트 디렉토리 기준)
+env_path = Path(__file__).parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # 보안 설정
 SECRET_KEY = os.getenv("SECRET_KEY")

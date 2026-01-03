@@ -350,6 +350,20 @@
                     editForm.onsubmit = null;
                     // Add new event listener
                     editForm.addEventListener('submit', function (event) {
+                        // #region agent log
+                        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editForm-submit-initial',message:'editProjectForm submit event triggered',data:{formAction:this.action,submitterId:event.submitter?.id,submitterType:event.submitter?.type},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'E'})}).catch(()=>{});
+                        // #endregion
+                        
+                        // 삭제 버튼 클릭으로 인한 form 제출 방지
+                        if (event.submitter && (event.submitter.id === 'deleteProjectBtn' || event.submitter.closest('#deleteProjectBtn'))) {
+                            // #region agent log
+                            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editForm-submit-prevent',message:'preventing form submit from delete button',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'E'})}).catch(()=>{});
+                            // #endregion
+                            event.preventDefault();
+                            event.stopPropagation();
+                            return false;
+                        }
+                        
                         const form = this;
                         const deptSelect = document.getElementById('edit_department');
                         console.log('=== FORM SUBMIT EVENT TRIGGERED (initial) ===');
@@ -475,12 +489,25 @@
 
                         // Add event listener to fresh form (backup)
                         freshForm.addEventListener('submit', function (event) {
+                            // #region agent log
+                            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editForm-submit-after-move',message:'editProjectForm submit event triggered after modal move',data:{formAction:this.action,eventTarget:event.target?.id,submitterId:event.submitter?.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+                            // #endregion
                             const form = this;
                             const deptSelect = document.getElementById('edit_department');
                             console.log('=== FORM SUBMIT EVENT TRIGGERED (after modal move) ===');
                             console.log('Form submitting - Action:', form.action);
                             console.log('Department select element:', deptSelect);
                             console.log('Department value:', deptSelect?.value);
+                            
+                            // 삭제 버튼 클릭으로 인한 form 제출 방지
+                            if (event.submitter && event.submitter.id === 'deleteProjectBtn') {
+                                // #region agent log
+                                fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editForm-submit-after-move-prevent',message:'preventing form submit from delete button after modal move',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+                                // #endregion
+                                event.preventDefault();
+                                event.stopPropagation();
+                                return false;
+                            }
 
                             // Get all form data
                             const formData = new FormData(form);
@@ -756,16 +783,27 @@
     }
 
     function deleteProject() {
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:758',message:'deleteProject called',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run3',hypothesisId:'A'})}).catch(()=>{});
+        // #endregion
+        // 삭제 버튼 클릭 플래그 설정
+        window.deleteButtonClicked = true;
         console.log('=== deleteProject called ===');
         
         // 1. 삭제 버튼의 data 속성에서 projectId 가져오기 (가장 확실)
         const deleteBtn = document.getElementById('deleteProjectBtn');
         let projectId = deleteBtn?.getAttribute('data-project-id');
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:763',message:'projectId from data attribute',data:{projectId:projectId,deleteBtnExists:!!deleteBtn},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+        // #endregion
         console.log('projectId from deleteBtn data attribute:', projectId);
         
         // 2. 전역 변수에서 projectId 가져오기
         if (!projectId) {
             projectId = window.currentProjectId;
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:768',message:'projectId from window.currentProjectId',data:{projectId:projectId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+            // #endregion
             console.log('projectId from window.currentProjectId:', projectId);
         }
         
@@ -780,12 +818,18 @@
                 
                 if (projectsIndex !== -1 && projectsIndex + 1 < actionParts.length) {
                     projectId = actionParts[projectsIndex + 1];
+                    // #region agent log
+                    fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:783',message:'projectId extracted from form.action',data:{projectId:projectId,formAction:form.action},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+                    // #endregion
                     console.log('Extracted projectId from form.action:', projectId);
                 }
             }
         }
         
         if (!projectId) {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:788',message:'projectId not found',data:{deleteBtnExists:!!deleteBtn,currentProjectId:window.currentProjectId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+            // #endregion
             console.error('프로젝트 ID를 찾을 수 없습니다.');
             console.error('deleteBtn:', deleteBtn);
             console.error('window.currentProjectId:', window.currentProjectId);
@@ -793,11 +837,17 @@
             return;
         }
         
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:796',message:'calling deleteProjectById',data:{projectId:projectId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
         console.log('Deleting project ID:', projectId);
         deleteProjectById(projectId);
     }
 
     function deleteProjectById(projectId) {
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:800',message:'deleteProjectById called',data:{projectId:projectId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
         if (!projectId) {
             alert('프로젝트 ID를 찾을 수 없습니다.');
             return;
@@ -812,10 +862,16 @@
         }
 
         if (!confirm('정말 이 프로젝트를 삭제하시겠습니까?')) {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:814',message:'delete cancelled by user',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+            // #endregion
             return;
         }
 
         const deleteUrl = `/projects/${id}/delete`;
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:818',message:'sending delete request',data:{deleteUrl:deleteUrl,projectId:id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
         console.log('=== DELETE REQUEST ===');
         console.log('URL:', deleteUrl);
         console.log('Project ID:', id);
@@ -832,6 +888,9 @@
             redirect: 'manual' // 리다이렉트를 수동으로 처리
         })
         .then(response => {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:834',message:'delete response received',data:{status:response.status,statusText:response.statusText,url:response.url,redirected:response.redirected},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+            // #endregion
             console.log('=== DELETE RESPONSE ===');
             console.log('Status:', response.status);
             console.log('Status Text:', response.statusText);
@@ -1000,7 +1059,23 @@
             <h3 class="text-xl font-bold text-gray-800">프로젝트 수정</h3>
             <button onclick="closeEditProjectModal();" class="text-gray-400 hover:text-gray-600">✕</button>
         </div>
-        <form id="editProjectForm" method="post" action="" class="space-y-4">
+        <form id="editProjectForm" method="post" action="" class="space-y-4" onsubmit="
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editProjectForm-onsubmit',message:'editProjectForm submit triggered',data:{action:this.action,submitterId:event.submitter?.id,deleteButtonClicked:window.deleteButtonClicked},timestamp:Date.now(),sessionId:'debug-session',runId:'run3',hypothesisId:'E'})}).catch(()=>{});
+            // #endregion
+            // 삭제 버튼 클릭으로 인한 form 제출 방지
+            if (window.deleteButtonClicked || (event.submitter && (event.submitter.id === 'deleteProjectBtn' || event.submitter.closest('#deleteProjectBtn')))) {
+                // #region agent log
+                fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:editProjectForm-onsubmit-prevent',message:'preventing form submit from delete button in onsubmit',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run3',hypothesisId:'E'})}).catch(()=>{});
+                // #endregion
+                window.deleteButtonClicked = false; // 플래그 리셋
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+            }
+            window.deleteButtonClicked = false; // 플래그 리셋
+            return true;
+        ">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">프로젝트명</label>
                 <input type="text" name="name" id="edit_name" required
@@ -1076,6 +1151,21 @@
         <!-- 삭제 버튼을 form 밖으로 이동하여 form 제출 방지 -->
         <div class="flex gap-2 pt-2 px-6">
             <button type="button" id="deleteProjectBtn"
+                onclick="
+                    // #region agent log
+                    fetch('http://127.0.0.1:7242/ingest/6bcbcc5f-18fe-4f62-b8fc-b39f13d1ed52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'projects.html:deleteProjectBtn-onclick',message:'delete button onclick triggered',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run3',hypothesisId:'E'})}).catch(()=>{});
+                    // #endregion
+                    // 전역 변수로 삭제 버튼 클릭 표시
+                    window.deleteButtonClicked = true;
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (typeof deleteProject === 'function') {
+                        deleteProject();
+                    } else {
+                        console.error('deleteProject function not found');
+                    }
+                    return false;
+                "
                 class="w-full bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition">삭제</button>
         </div>
         <!-- Hidden Delete Form (Helper) -->

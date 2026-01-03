@@ -344,6 +344,7 @@
                 
                 // 삭제 form에 submit 핸들러 연결
                 const deleteForm = document.getElementById('deleteProjectForm');
+                const deleteBtn = document.getElementById('deleteProjectBtn');
                 if (deleteForm) {
                     // 기존 핸들러 제거
                     deleteForm.onsubmit = null;
@@ -351,6 +352,27 @@
                     // 새 핸들러 추가
                     deleteForm.addEventListener('submit', handleDeleteFormSubmit);
                     console.log('[DELETE] 삭제 form 핸들러 연결됨, action:', deleteForm.action);
+                    
+                    // 삭제 버튼에 직접 클릭 핸들러 추가 (action 확인 및 설정)
+                    if (deleteBtn) {
+                        deleteBtn.onclick = function(e) {
+                            // action이 설정되어 있는지 확인
+                            if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname) {
+                                // action을 다시 설정
+                                const projectId = window.currentProjectId || deleteBtn.getAttribute('data-project-id');
+                                if (projectId) {
+                                    deleteForm.action = `/projects/${projectId}/delete`;
+                                    console.log('[DELETE] 삭제 form action 재설정:', deleteForm.action);
+                                } else {
+                                    console.error('[DELETE] 프로젝트 ID를 찾을 수 없습니다.');
+                                    alert('프로젝트 ID를 찾을 수 없습니다.');
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    return false;
+                                }
+                            }
+                        };
+                    }
                 } else {
                     console.error('[DELETE] deleteProjectForm을 찾을 수 없습니다.');
                 }
@@ -467,6 +489,7 @@
                     
                     // 삭제 form에 submit 핸들러 연결 (모달 이동 후)
                     const deleteForm = document.getElementById('deleteProjectForm');
+                    const deleteBtn = document.getElementById('deleteProjectBtn');
                     if (deleteForm) {
                         // 기존 핸들러 제거
                         deleteForm.onsubmit = null;
@@ -474,6 +497,27 @@
                         // 새 핸들러 추가
                         deleteForm.addEventListener('submit', handleDeleteFormSubmit);
                         console.log('[DELETE] 삭제 form 핸들러 재연결됨 (모달 이동 후), action:', deleteForm.action);
+                        
+                        // 삭제 버튼에 직접 클릭 핸들러 추가 (action 확인 및 설정)
+                        if (deleteBtn) {
+                            deleteBtn.onclick = function(e) {
+                                // action이 설정되어 있는지 확인
+                                if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname) {
+                                    // action을 다시 설정
+                                    const projectId = window.currentProjectId || deleteBtn.getAttribute('data-project-id');
+                                    if (projectId) {
+                                        deleteForm.action = `/projects/${projectId}/delete`;
+                                        console.log('[DELETE] 삭제 form action 재설정 (모달 이동 후):', deleteForm.action);
+                                    } else {
+                                        console.error('[DELETE] 프로젝트 ID를 찾을 수 없습니다 (모달 이동 후).');
+                                        alert('프로젝트 ID를 찾을 수 없습니다.');
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        return false;
+                                    }
+                                }
+                            };
+                        }
                     } else {
                         console.error('[DELETE] deleteProjectForm을 찾을 수 없습니다 (모달 이동 후).');
                     }
@@ -820,14 +864,33 @@
             return false;
         }
         
-        // action이 설정되어 있는지 확인
-        if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname) {
-            console.error('[DELETE] 삭제 form의 action이 설정되지 않았습니다. action:', deleteForm.action);
+        // project_id를 다시 확인하고 action 설정
+        let projectId = window.currentProjectId;
+        if (!projectId) {
+            // 삭제 버튼의 data 속성에서 가져오기
+            const deleteBtn = document.getElementById('deleteProjectBtn');
+            if (deleteBtn) {
+                projectId = deleteBtn.getAttribute('data-project-id');
+            }
+        }
+        
+        if (!projectId) {
+            console.error('[DELETE] 프로젝트 ID를 찾을 수 없습니다.');
             alert('프로젝트 ID를 찾을 수 없습니다. 페이지를 새로고침 후 다시 시도해주세요.');
             return false;
         }
         
-        console.log('[DELETE] 삭제 form action:', deleteForm.action);
+        // action을 명시적으로 설정
+        const deleteUrl = `/projects/${projectId}/delete`;
+        deleteForm.action = deleteUrl;
+        console.log('[DELETE] 삭제 form action 설정:', deleteForm.action);
+        
+        // action이 올바르게 설정되었는지 최종 확인
+        if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname || !deleteForm.action.includes('/delete')) {
+            console.error('[DELETE] 삭제 form의 action이 올바르게 설정되지 않았습니다. action:', deleteForm.action);
+            alert('삭제 URL을 설정할 수 없습니다. 페이지를 새로고침 후 다시 시도해주세요.');
+            return false;
+        }
         
         // 확인 팝업
         if (!confirm('정말 이 프로젝트를 삭제하시겠습니까?')) {

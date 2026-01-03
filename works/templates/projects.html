@@ -350,6 +350,9 @@
                     deleteForm.removeEventListener('submit', handleDeleteFormSubmit);
                     // 새 핸들러 추가
                     deleteForm.addEventListener('submit', handleDeleteFormSubmit);
+                    console.log('[DELETE] 삭제 form 핸들러 연결됨, action:', deleteForm.action);
+                } else {
+                    console.error('[DELETE] deleteProjectForm을 찾을 수 없습니다.');
                 }
 
                 // Verify form action was set and attach submit handler
@@ -470,6 +473,9 @@
                         deleteForm.removeEventListener('submit', handleDeleteFormSubmit);
                         // 새 핸들러 추가
                         deleteForm.addEventListener('submit', handleDeleteFormSubmit);
+                        console.log('[DELETE] 삭제 form 핸들러 재연결됨 (모달 이동 후), action:', deleteForm.action);
+                    } else {
+                        console.error('[DELETE] deleteProjectForm을 찾을 수 없습니다 (모달 이동 후).');
                     }
 
                     // Re-attach onsubmit event handler after modal move
@@ -808,16 +814,27 @@
         event.stopPropagation();
         
         const deleteForm = document.getElementById('deleteProjectForm');
-        if (!deleteForm || !deleteForm.action) {
-            console.error('삭제 form을 찾을 수 없거나 action이 설정되지 않았습니다.');
-            alert('프로젝트 ID를 찾을 수 없습니다.');
+        if (!deleteForm) {
+            console.error('[DELETE] 삭제 form을 찾을 수 없습니다.');
+            alert('프로젝트 삭제 form을 찾을 수 없습니다.');
             return false;
         }
+        
+        // action이 설정되어 있는지 확인
+        if (!deleteForm.action || deleteForm.action === '' || deleteForm.action === window.location.pathname) {
+            console.error('[DELETE] 삭제 form의 action이 설정되지 않았습니다. action:', deleteForm.action);
+            alert('프로젝트 ID를 찾을 수 없습니다. 페이지를 새로고침 후 다시 시도해주세요.');
+            return false;
+        }
+        
+        console.log('[DELETE] 삭제 form action:', deleteForm.action);
         
         // 확인 팝업
         if (!confirm('정말 이 프로젝트를 삭제하시겠습니까?')) {
             return false;
         }
+        
+        console.log('[DELETE] 삭제 확인됨, form 제출:', deleteForm.action);
         
         // form 제출
         deleteForm.submit();
@@ -1104,8 +1121,8 @@
             </div>
         </form>
         <!-- 삭제 버튼을 별도 form으로 분리하여 form 제출 방지 -->
-        <form id="deleteProjectForm" method="post" action="" onsubmit="return handleDeleteFormSubmit(event);" class="px-6 pt-2">
-            <button type="submit"
+        <form id="deleteProjectForm" method="post" action="" class="px-6 pt-2">
+            <button type="submit" id="deleteProjectBtn"
                 class="w-full bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition">삭제</button>
         </form>
     </div>

@@ -244,7 +244,7 @@ def signup(request: Request, username: str = Form(...), password: str = Form(...
         new_user = models.User(
             username=username,
             password_hash=utils.get_password_hash(password),
-            department=department,
+            department=utils.normalize_department(department),
             role="admin" if username == config.ADMIN_USERNAME else "user"
         )
         db.add(new_user)
@@ -535,7 +535,7 @@ def create_task(title: str = Form(...),
         due_date=due_date_obj,
         project_id=project_id,
         category_id=category_id,
-        department=department,
+        department=utils.normalize_department(department),
         creator_id=current_user.id
     )
     db.add(new_task)
@@ -591,7 +591,7 @@ def create_user(username: str = Form(...),
     
     new_user = models.User(
         username=username,
-        department=department,
+        department=utils.normalize_department(department),
         email=email,
         phone=phone,
         position=position,
@@ -853,7 +853,7 @@ def create_task_page(request: Request,
         due_date=utils.parse_date(due_date, '%Y-%m-%d'),
         project_id=None if project_id == 0 else project_id,
         category_id=None if category_id == 0 else category_id,
-        department=department,
+        department=utils.normalize_department(department),
         creator_id=current_user.id
     )
     db.add(new_task)

@@ -958,12 +958,28 @@ async def upload_task_file(task_id: int, file: UploadFile = File(...), db: Sessi
 
 
 @app.post("/projects/{project_id}/delete", response_class=RedirectResponse)
-def delete_project(project_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    if not current_user: return RedirectResponse(url="/login", status_code=303)
+def delete_project(project_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    """프로젝트 삭제 - Request를 명시적으로 받아 Form 파싱 오류 방지"""
+    if not current_user:
+        return RedirectResponse(url="/login", status_code=303)
+    
     project = db.query(models.Project).filter(models.Project.id == project_id).first()
     if project:
+        # 관련 파일 삭제
+        for file in project.files:
+            if os.path.exists(file.filepath):
+                try:
+                    os.remove(file.filepath)
+                except Exception as e:
+                    print(f"파일 삭제 오류: {e}")
+        
+        # 관련 업무의 project_id를 None으로 설정
+        db.query(models.Task).filter(models.Task.project_id == project_id).update({"project_id": None})
+        
+        # 프로젝트 삭제
         db.delete(project)
         db.commit()
+    
     return RedirectResponse(url="/projects", status_code=303)
 
 @app.post("/tasks/{task_id}/delete", response_class=RedirectResponse)

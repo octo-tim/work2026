@@ -958,8 +958,8 @@ async def upload_task_file(task_id: int, file: UploadFile = File(...), db: Sessi
 
 
 @app.post("/projects/{project_id}/delete", response_class=RedirectResponse)
-def delete_project(project_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    """프로젝트 삭제 - Request를 명시적으로 받아 Form 파싱 오류 방지"""
+def delete_project(project_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user), name: Optional[str] = Form(None), status: Optional[str] = Form(None)):
+    """프로젝트 삭제 - Optional Form 필드로 FastAPI Form 파싱 오류 방지"""
     if not current_user:
         return RedirectResponse(url="/login", status_code=303)
     

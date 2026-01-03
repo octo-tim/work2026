@@ -72,10 +72,3 @@ def normalize_department(department: Optional[str]) -> Optional[str]:
         return None
     return department.strip()
 
-
-def normalize_department(department: Optional[str]) -> Optional[str]:
-    """사업부 값을 정규화 (빈 문자열을 None으로 변환)"""
-    if not department or not department.strip():
-        return None
-    return department.strip()
-

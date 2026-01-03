@@ -2,16 +2,16 @@
 
 {# 사업부 표시 매크로 #}
 {% macro render_department(department) %}
-    {% if department == '시스템사업부' %}
-    <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full font-bold">시스템사업부</span>
-    {% elif department == '유통사업부' %}
-    <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-bold">유통사업부</span>
-    {% elif department == '경영지원팀' %}
-    <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">경영지원팀</span>
-    {% elif department %}
-    <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-bold">{{ department }}</span>
+    {% if not department or department == '' %}
+        <span class="text-gray-400">-</span>
+    {% elif department == '시스템사업부' or department == 'System' %}
+        <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full font-bold">시스템사업부</span>
+    {% elif department == '유통사업부' or department == 'Distribution' %}
+        <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-bold">유통사업부</span>
+    {% elif department == '경영지원팀' or department == 'Management' %}
+        <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">경영지원팀</span>
     {% else %}
-    <span class="text-gray-400">-</span>
+        <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-bold">{{ department }}</span>
     {% endif %}
 {% endmacro %}
 
@@ -64,7 +64,9 @@
                             <td class="px-6 py-4">
                                 {{ render_department(p.department) }}
                             </td>
-
+                            <td class="px-6 py-4">
+                                <span class="text-xs text-gray-500">{{ p.creator.username if p.creator else '시스템' }}</span>
+                            </td>
                             <td class="px-6 py-4">
                                 {{ p.start_date.strftime('%Y-%m') if p.start_date else '' }} ~ {{
                                 p.end_date.strftime('%Y-%m') if p.end_date else '' }}

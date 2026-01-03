@@ -6,6 +6,8 @@ import os
 import traceback
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
+from sqlalchemy import text
+from sqlalchemy.exc import IntegrityError
 from database import SessionLocal, engine
 import models
 from typing import Optional, List
@@ -959,52 +961,53 @@ async def upload_task_file(task_id: int, file: UploadFile = File(...), db: Sessi
 
 @app.post("/projects/{project_id}/delete", response_class=RedirectResponse)
 async def delete_project(project_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    """프로젝트 삭제 - async와 Request를 사용하여 FastAPI Form 파싱 완전 우회"""
-    # Request body를 명시적으로 읽어서 FastAPI가 Form 파싱을 시도하지 않도록 함
     try:
         await request.body()
-    except Exception as e:
-        print(f"Request body 읽기 오류 (무시 가능): {e}")
-    
+    except Exception:
+        pass
+
     if not current_user:
         return RedirectResponse(url="/login", status_code=303)
-    
+
     project = db.query(models.Project).filter(models.Project.id == project_id).first()
-    if project:
-        # 관련 파일 삭제
-        for file in project.files:
-            # DB에 저장된 filepath는 웹 경로 형식(/uploads/...)이므로 실제 파일 경로로 변환
-            # /uploads/filename -> uploads/filename
-            actual_filepath = file.filepath.lstrip('/') if file.filepath.startswith('/') else file.filepath
-            
-            if os.path.exists(actual_filepath):
+    if not project:
+        return RedirectResponse(url="/projects", status_code=303)
+
+    try:
+        # 1) 물리 파일 삭제 (URL 경로 -> 실제 경로 변환)
+        for f in list(project.files):
+            real_path = f.filepath.lstrip("/")  # "/uploads/.." -> "uploads/.."
+            if os.path.exists(real_path):
                 try:
-                    os.remove(actual_filepath)
-                    print(f"파일 삭제 성공: {actual_filepath}")
+                    os.remove(real_path)
                 except Exception as e:
-                    print(f"파일 삭제 오류 ({actual_filepath}): {e}")
-            else:
-                # 원본 경로도 시도 (하위 호환성)
-                if file.filepath != actual_filepath and os.path.exists(file.filepath):
-                    try:
-                        os.remove(file.filepath)
-                        print(f"파일 삭제 성공 (원본 경로): {file.filepath}")
-                    except Exception as e:
-                        print(f"파일 삭제 오류 ({file.filepath}): {e}")
-                else:
-                    print(f"파일을 찾을 수 없음: {actual_filepath} (DB 경로: {file.filepath})")
-        
-        # 관련 업무의 project_id를 None으로 설정
+                    print(f"파일 삭제 오류: {e}")
+
+        # 2) 프로젝트 파일 DB 레코드 삭제 (FK 방지)
+        db.query(models.ProjectFile).filter(models.ProjectFile.project_id == project_id).delete(synchronize_session=False)
+
+        # 3) 프로젝트-담당자 M:N 연결 정리 (association table)
+        # models.project_assignees 는 Table 객체라고 가정
+        db.execute(models.project_assignees.delete().where(models.project_assignees.c.project_id == project_id))
+
+        # 4) 관련 업무의 project_id NULL 처리
         db.query(models.Task).filter(models.Task.project_id == project_id).update({"project_id": None})
-        
-        # 프로젝트 삭제
+
+        # 5) 프로젝트 삭제
         db.delete(project)
         db.commit()
-        print(f"프로젝트 {project_id} 삭제 완료")
-    else:
-        print(f"프로젝트 {project_id}를 찾을 수 없습니다")
-    
-    return RedirectResponse(url="/projects", status_code=303)
+
+        return RedirectResponse(url="/projects", status_code=303)
+
+    except IntegrityError as e:
+        db.rollback()
+        print(f"[DELETE PROJECT] IntegrityError: {e}")
+        return RedirectResponse(url="/projects?error=delete_failed_fk", status_code=303)
+
+    except Exception as e:
+        db.rollback()
+        print(f"[DELETE PROJECT] Error: {e}")
+        return RedirectResponse(url="/projects?error=delete_failed", status_code=303)
 
 @app.post("/tasks/{task_id}/delete", response_class=RedirectResponse)
 def delete_task(task_id: int, request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):

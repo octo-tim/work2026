@@ -704,14 +704,32 @@
 
     function deleteProject() {
         const form = document.getElementById('deleteProjectForm');
-        if (form && form.action) {
-            const projectId = form.action.split('/').filter(p => p && p !== 'delete' && p !== 'projects').pop();
-            if (projectId) {
-                deleteProjectById(projectId);
-            } else {
-                alert('프로젝트 ID를 찾을 수 없습니다.');
-            }
+        if (!form || !form.action) {
+            console.error('deleteProjectForm을 찾을 수 없거나 action이 설정되지 않았습니다.');
+            alert('프로젝트 ID를 찾을 수 없습니다.');
+            return;
         }
+        
+        // form.action에서 projectId 추출: "/projects/123/delete" -> "123"
+        const actionParts = form.action.split('/').filter(p => p);
+        const projectsIndex = actionParts.indexOf('projects');
+        
+        if (projectsIndex === -1 || projectsIndex + 1 >= actionParts.length) {
+            console.error('Invalid form.action:', form.action);
+            alert('프로젝트 ID를 찾을 수 없습니다.');
+            return;
+        }
+        
+        const projectId = actionParts[projectsIndex + 1];
+        
+        if (!projectId || isNaN(parseInt(projectId))) {
+            console.error('Invalid project ID:', projectId, 'from form.action:', form.action);
+            alert('프로젝트 ID를 찾을 수 없습니다.');
+            return;
+        }
+        
+        console.log('Deleting project ID:', projectId);
+        deleteProjectById(projectId);
     }
 
     function deleteProjectById(projectId) {
@@ -720,12 +738,22 @@
             return;
         }
 
+        // projectId를 숫자로 변환
+        const id = parseInt(projectId);
+        if (isNaN(id)) {
+            console.error('Invalid project ID:', projectId);
+            alert('유효하지 않은 프로젝트 ID입니다.');
+            return;
+        }
+
         if (!confirm('정말 이 프로젝트를 삭제하시겠습니까?')) {
             return;
         }
 
+        console.log('Sending delete request to:', `/projects/${id}/delete`);
+
         // fetch API를 사용하여 삭제 요청 (빈 body로 전송)
-        fetch(`/projects/${projectId}/delete`, {
+        fetch(`/projects/${id}/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -951,7 +979,7 @@
                     class="flex-1 bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">저장</button>
                 <!-- Link separate delete logic manually or via js logic -->
                 <button type="button"
-                    onclick="deleteProjectById({{ p.id if 'p' in locals() else 'null' }})"
+                    onclick="deleteProject()"
                     class="bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition">삭제</button>
             </div>
         </form>

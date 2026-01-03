@@ -312,6 +312,10 @@
 
             // Set Form Actions using project ID
             const id = ds.id;
+            
+            // 전역 변수에 현재 프로젝트 ID 저장 (삭제 버튼에서 사용)
+            window.currentProjectId = id;
+            
             if (id) {
                 const setAction = (formId, url) => {
                     const form = document.getElementById(formId);
@@ -703,27 +707,25 @@
     }
 
     function deleteProject() {
-        const form = document.getElementById('deleteProjectForm');
-        if (!form || !form.action) {
-            console.error('deleteProjectForm을 찾을 수 없거나 action이 설정되지 않았습니다.');
-            alert('프로젝트 ID를 찾을 수 없습니다.');
-            return;
+        // 전역 변수에서 projectId 가져오기 (우선)
+        let projectId = window.currentProjectId;
+        
+        // 전역 변수가 없으면 form에서 추출 시도
+        if (!projectId) {
+            const form = document.getElementById('deleteProjectForm');
+            if (form && form.action) {
+                // form.action에서 projectId 추출: "/projects/123/delete" -> "123"
+                const actionParts = form.action.split('/').filter(p => p);
+                const projectsIndex = actionParts.indexOf('projects');
+                
+                if (projectsIndex !== -1 && projectsIndex + 1 < actionParts.length) {
+                    projectId = actionParts[projectsIndex + 1];
+                }
+            }
         }
         
-        // form.action에서 projectId 추출: "/projects/123/delete" -> "123"
-        const actionParts = form.action.split('/').filter(p => p);
-        const projectsIndex = actionParts.indexOf('projects');
-        
-        if (projectsIndex === -1 || projectsIndex + 1 >= actionParts.length) {
-            console.error('Invalid form.action:', form.action);
-            alert('프로젝트 ID를 찾을 수 없습니다.');
-            return;
-        }
-        
-        const projectId = actionParts[projectsIndex + 1];
-        
-        if (!projectId || isNaN(parseInt(projectId))) {
-            console.error('Invalid project ID:', projectId, 'from form.action:', form.action);
+        if (!projectId) {
+            console.error('프로젝트 ID를 찾을 수 없습니다. currentProjectId:', window.currentProjectId);
             alert('프로젝트 ID를 찾을 수 없습니다.');
             return;
         }
@@ -979,7 +981,7 @@
                     class="flex-1 bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">저장</button>
                 <!-- Link separate delete logic manually or via js logic -->
                 <button type="button"
-                    onclick="deleteProject()"
+                    onclick="event.preventDefault(); event.stopPropagation(); deleteProject(); return false;"
                     class="bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition">삭제</button>
             </div>
         </form>

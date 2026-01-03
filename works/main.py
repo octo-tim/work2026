@@ -719,17 +719,15 @@ def create_project(name: str = Form(...), description: str = Form(None),
         start_date=s_date, 
         end_date=e_date, 
         status=status, 
-        department=department,
+        department=utils.normalize_department(department),
         creator_id=current_user.id
     )
     db.add(new_project)
     db.commit()
     
     # 담당자 처리
-    if assignee_ids:
-        users = db.query(models.User).filter(models.User.id.in_(assignee_ids)).all()
-        new_project.assignees = users
-        db.commit()
+    update_assignees(db, new_project, assignee_ids)
+    db.commit()
     return RedirectResponse(url="/projects", status_code=303)
 
 
@@ -753,23 +751,17 @@ def update_project(project_id: int,
     s_date = utils.parse_date(start_date, "%Y-%m") if start_date else None
     e_date = utils.parse_date(end_date, "%Y-%m") if end_date else None
     
-    # Department 처리: 빈 문자열을 None으로 변환
-    department_value = department if department and department.strip() else None
-    print(f"[DEBUG] Updating project {project_id}: department received = '{department}', processed = '{department_value}'")
+    # Department 처리
+    project.department = utils.normalize_department(department)
     
     project.name = name
     project.description = description
     project.start_date = s_date
     project.end_date = e_date
     project.status = status
-    project.department = department_value
     
-    # 담당자 목록 전체 교체
-    if assignee_ids:
-        users = db.query(models.User).filter(models.User.id.in_(assignee_ids)).all()
-        project.assignees = users
-    else:
-        project.assignees = []
+    # 담당자 목록 업데이트
+    utils.update_assignees(db, project, assignee_ids)
     
     db.commit()
     return RedirectResponse(url="/projects", status_code=303)
@@ -900,22 +892,14 @@ def update_task_details(task_id: int,
     task.title = title
     task.description = description
     task.status = status
-    
-    # 담당자 업데이트
-    if assignee_ids:
-        users = db.query(models.User).filter(models.User.id.in_(assignee_ids)).all()
-        task.assignees = users
-        if users:
-            task.assignee_id = users[0].id
-    else:
-        task.assignees = []
-        task.assignee_id = None
-
     task.start_date = utils.parse_date(start_date, '%Y-%m-%d')
     task.due_date = utils.parse_date(due_date, '%Y-%m-%d')
     task.project_id = None if project_id == 0 else project_id
     task.category_id = None if category_id == 0 else category_id
-    task.department = department
+    task.department = utils.normalize_department(department)
+    
+    # 담당자 업데이트
+    utils.update_assignees(db, task, assignee_ids, 'assignee_id')
     db.commit()
     return RedirectResponse(url="/tasks", status_code=303)
 

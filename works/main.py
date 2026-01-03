@@ -63,6 +63,19 @@ def require_admin(current_user: models.User = Depends(require_auth)):
     return current_user
 
 
+def update_assignees(db: Session, entity, assignee_ids: List[int], assignee_id_attr: Optional[str] = None):
+    """담당자 목록을 업데이트하는 헬퍼 함수"""
+    if assignee_ids:
+        users = db.query(models.User).filter(models.User.id.in_(assignee_ids)).all()
+        entity.assignees = users
+        if assignee_id_attr and users:
+            setattr(entity, assignee_id_attr, users[0].id)
+    else:
+        entity.assignees = []
+        if assignee_id_attr:
+            setattr(entity, assignee_id_attr, None)
+
+
 # 데이터베이스 초기화
 try:
     models.Base.metadata.create_all(bind=engine)
@@ -859,12 +872,9 @@ def create_task_page(request: Request,
     db.add(new_task)
     db.commit()
     
-    if assignee_ids:
-        users = db.query(models.User).filter(models.User.id.in_(assignee_ids)).all()
-        new_task.assignees = users
-        if users:
-            new_task.assignee_id = users[0].id
-        db.commit()
+    # 담당자 처리
+    update_assignees(db, new_task, assignee_ids, 'assignee_id')
+    db.commit()
     return RedirectResponse(url="/tasks", status_code=303)
 
 

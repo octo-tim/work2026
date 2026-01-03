@@ -513,41 +513,71 @@
                         console.log('Form action:', form.action);
                         console.log('Department value:', deptSelect.value);
 
+                        // Ensure department select has the correct value
+                        if (!deptSelect.value) {
+                            console.warn('Department value is empty, setting to selected option');
+                            const selectedOption = deptSelect.options[deptSelect.selectedIndex];
+                            if (selectedOption) {
+                                deptSelect.value = selectedOption.value;
+                                console.log('Set department to:', deptSelect.value);
+                            }
+                        }
+
+                        // Verify department is in form
                         const formData = new FormData(form);
-
-                        // Always ensure department is set correctly
-                        formData.set('department', deptSelect.value);
-
-                        console.log('FormData entries:');
+                        console.log('FormData entries BEFORE:');
                         for (let [key, value] of formData.entries()) {
                             console.log(`  ${key}: ${value}`);
                         }
 
-                        // Submit using fetch
-                        console.log('Submitting form via fetch to:', form.action);
-                        fetch(form.action, {
-                            method: form.method,
-                            body: formData
-                        })
-                            .then(response => {
-                                console.log('Response status:', response.status);
-                                if (response.redirected) {
-                                    console.log('Redirected to:', response.url);
-                                    window.location.href = response.url;
-                                } else if (response.ok) {
-                                    window.location.reload();
-                                } else {
-                                    return response.text().then(text => {
-                                        console.error('Error response:', text);
-                                        alert('저장 중 오류가 발생했습니다.');
-                                    });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error submitting form:', error);
-                                alert('저장 중 오류가 발생했습니다: ' + error.message);
-                            });
+                        // Always ensure department is set correctly
+                        if (!formData.has('department') || !formData.get('department')) {
+                            console.warn('Department not in form data, adding manually');
+                            formData.set('department', deptSelect.value);
+                        }
 
+                        // Also ensure the select element itself has the value
+                        if (deptSelect.value !== formData.get('department')) {
+                            console.warn('Department mismatch, updating select value');
+                            deptSelect.value = formData.get('department') || deptSelect.value;
+                        }
+
+                        console.log('FormData entries AFTER:');
+                        for (let [key, value] of formData.entries()) {
+                            console.log(`  ${key}: ${value}`);
+                        }
+
+                        // Use standard form submission instead of fetch for better compatibility
+                        console.log('Submitting form normally to:', form.action);
+                        
+                        // Create a temporary form to submit with all data including department
+                        const tempForm = document.createElement('form');
+                        tempForm.method = form.method;
+                        tempForm.action = form.action;
+                        tempForm.style.display = 'none';
+                        
+                        // Copy all form fields
+                        for (let [key, value] of formData.entries()) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = value;
+                            tempForm.appendChild(input);
+                        }
+                        
+                        // Ensure department is definitely included
+                        if (!formData.has('department') || !formData.get('department')) {
+                            const deptInput = document.createElement('input');
+                            deptInput.type = 'hidden';
+                            deptInput.name = 'department';
+                            deptInput.value = deptSelect.value;
+                            tempForm.appendChild(deptInput);
+                            console.log('Added department as hidden input:', deptSelect.value);
+                        }
+                        
+                        document.body.appendChild(tempForm);
+                        tempForm.submit();
+                        
                         return false;
                     };
 

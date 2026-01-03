@@ -973,11 +973,26 @@ async def delete_project(project_id: int, request: Request, db: Session = Depend
     if project:
         # 관련 파일 삭제
         for file in project.files:
-            if os.path.exists(file.filepath):
+            # DB에 저장된 filepath는 웹 경로 형식(/uploads/...)이므로 실제 파일 경로로 변환
+            # /uploads/filename -> uploads/filename
+            actual_filepath = file.filepath.lstrip('/') if file.filepath.startswith('/') else file.filepath
+            
+            if os.path.exists(actual_filepath):
                 try:
-                    os.remove(file.filepath)
+                    os.remove(actual_filepath)
+                    print(f"파일 삭제 성공: {actual_filepath}")
                 except Exception as e:
-                    print(f"파일 삭제 오류: {e}")
+                    print(f"파일 삭제 오류 ({actual_filepath}): {e}")
+            else:
+                # 원본 경로도 시도 (하위 호환성)
+                if file.filepath != actual_filepath and os.path.exists(file.filepath):
+                    try:
+                        os.remove(file.filepath)
+                        print(f"파일 삭제 성공 (원본 경로): {file.filepath}")
+                    except Exception as e:
+                        print(f"파일 삭제 오류 ({file.filepath}): {e}")
+                else:
+                    print(f"파일을 찾을 수 없음: {actual_filepath} (DB 경로: {file.filepath})")
         
         # 관련 업무의 project_id를 None으로 설정
         db.query(models.Task).filter(models.Task.project_id == project_id).update({"project_id": None})
@@ -996,6 +1011,29 @@ def delete_task(task_id: int, request: Request, db: Session = Depends(get_db), c
     if not current_user: return RedirectResponse(url="/login", status_code=303)
     task = db.query(models.Task).filter(models.Task.id == task_id).first()
     if task:
+        # 관련 파일 삭제
+        for file in task.files:
+            # DB에 저장된 filepath는 웹 경로 형식(/uploads/tasks/...)이므로 실제 파일 경로로 변환
+            # /uploads/tasks/filename -> uploads/tasks/filename
+            actual_filepath = file.filepath.lstrip('/') if file.filepath.startswith('/') else file.filepath
+            
+            if os.path.exists(actual_filepath):
+                try:
+                    os.remove(actual_filepath)
+                    print(f"업무 파일 삭제 성공: {actual_filepath}")
+                except Exception as e:
+                    print(f"업무 파일 삭제 오류 ({actual_filepath}): {e}")
+            else:
+                # 원본 경로도 시도 (하위 호환성)
+                if file.filepath != actual_filepath and os.path.exists(file.filepath):
+                    try:
+                        os.remove(file.filepath)
+                        print(f"업무 파일 삭제 성공 (원본 경로): {file.filepath}")
+                    except Exception as e:
+                        print(f"업무 파일 삭제 오류 ({file.filepath}): {e}")
+                else:
+                    print(f"업무 파일을 찾을 수 없음: {actual_filepath} (DB 경로: {file.filepath})")
+        
         db.delete(task)
         db.commit()
     # Check referer to redirect back to where we came from (dashboard or tasks page)

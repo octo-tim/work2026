@@ -509,6 +509,33 @@
                     } else {
                         console.error('editProjectForm not found after modal move!');
                     }
+                    
+                    // Re-attach delete button handler after modal move
+                    requestAnimationFrame(() => {
+                        const deleteBtn = document.getElementById('deleteProjectBtn');
+                        if (deleteBtn) {
+                            // Remove any existing handlers
+                            deleteBtn.onclick = null;
+                            if (window.handleDeleteButtonClick) {
+                                deleteBtn.removeEventListener('click', window.handleDeleteButtonClick, true);
+                            }
+                            
+                            // Create handler function
+                            window.handleDeleteButtonClick = function (event) {
+                                console.log('=== DELETE BUTTON CLICKED (after modal move) ===');
+                                event.preventDefault();
+                                event.stopPropagation();
+                                deleteProject();
+                                return false;
+                            };
+                            
+                            // Attach handler with capture phase
+                            deleteBtn.addEventListener('click', window.handleDeleteButtonClick, true);
+                            console.log('✓ Delete button click handler re-attached after modal move');
+                        } else {
+                            console.warn('deleteProjectBtn not found after modal move');
+                        }
+                    });
                 }
             }
 
@@ -788,10 +815,14 @@
             return;
         }
 
-        console.log('Sending delete request to:', `/projects/${id}/delete`);
+        const deleteUrl = `/projects/${id}/delete`;
+        console.log('=== DELETE REQUEST ===');
+        console.log('URL:', deleteUrl);
+        console.log('Project ID:', id);
+        console.log('Type:', typeof id);
 
         // fetch API를 사용하여 삭제 요청
-        fetch(`/projects/${id}/delete`, {
+        fetch(deleteUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -801,34 +832,43 @@
             redirect: 'manual' // 리다이렉트를 수동으로 처리
         })
         .then(response => {
-            console.log('Delete response status:', response.status);
-            console.log('Delete response type:', response.type);
-            console.log('Delete response url:', response.url);
+            console.log('=== DELETE RESPONSE ===');
+            console.log('Status:', response.status);
+            console.log('Status Text:', response.statusText);
+            console.log('Type:', response.type);
+            console.log('URL:', response.url);
+            console.log('Redirected:', response.redirected);
             
             // 303 리다이렉트 또는 성공 응답 처리
             if (response.status === 303 || response.status === 200 || response.ok) {
                 // 성공한 경우 프로젝트 페이지로 이동
+                console.log('Delete successful, redirecting to /projects');
                 window.location.href = '/projects';
             } else if (response.status >= 400) {
                 // 에러 응답 처리
                 return response.text().then(text => {
-                    console.error('삭제 오류 응답:', text);
+                    console.error('=== DELETE ERROR ===');
+                    console.error('Response text:', text);
                     try {
                         const data = JSON.parse(text);
-                        console.error('삭제 오류 (JSON):', data);
+                        console.error('Error JSON:', data);
                         alert('프로젝트 삭제 중 오류가 발생했습니다: ' + (data.detail || JSON.stringify(data)));
                     } catch (e) {
-                        console.error('삭제 오류 (텍스트):', text);
+                        console.error('Error text (not JSON):', text);
                         alert('프로젝트 삭제 중 오류가 발생했습니다. 상태 코드: ' + response.status);
                     }
                 });
             } else {
                 // 기타 응답 (리다이렉트 등)
+                console.log('Unexpected status, redirecting to /projects');
                 window.location.href = '/projects';
             }
         })
         .catch(error => {
-            console.error('삭제 요청 오류:', error);
+            console.error('=== DELETE REQUEST ERROR ===');
+            console.error('Error:', error);
+            console.error('Error message:', error.message);
+            console.error('Error stack:', error.stack);
             alert('프로젝트 삭제 중 오류가 발생했습니다: ' + error.message);
         });
     }
@@ -1036,7 +1076,6 @@
         <!-- 삭제 버튼을 form 밖으로 이동하여 form 제출 방지 -->
         <div class="flex gap-2 pt-2 px-6">
             <button type="button" id="deleteProjectBtn"
-                onclick="deleteProject()"
                 class="w-full bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition">삭제</button>
         </div>
         <!-- Hidden Delete Form (Helper) -->

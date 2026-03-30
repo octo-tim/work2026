@@ -1,0 +1,49 @@
+<div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition cursor-pointer group relative"
+    onclick='openEditModal({{ task.id|tojson }}, {{ task.title|tojson }}, {{ (task.description or "")|tojson }}, {{ task.status|tojson }}, {{ (task.department or "")|tojson }}, {{ task.assignees|map(attribute="id")|list|tojson }}, {{ (task.start_date.strftime("%Y-%m-%d") if task.start_date else "")|tojson }}, {{ (task.due_date.strftime("%Y-%m-%d") if task.due_date else "")|tojson }}, {{ (task.project_id or 0)|tojson }}, {{ (task.category_id or 0)|tojson }}, {{ task.files|map(attribute="filename")|list|tojson }}, {{ task.files|map(attribute="filepath")|list|tojson }})'>
+    <div class="flex justify-between items-start mb-2">
+        {% if task.category %}
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded text-white"
+            style="background-color: {{ task.category.color }}">{{ task.category.name }}</span>
+        {% else %}
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-400 text-white">미지정</span>
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-400 text-white">미지정</span>
+        {% endif %}
+
+        {% if task.project %}
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 ml-1">{{ task.project.name
+            }}</span>
+        {% endif %}
+
+        {% if task.department == 'System' %}
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 ml-1">시스템</span>
+        {% elif task.department == 'Distribution' %}
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-orange-100 text-orange-700 ml-1">유통</span>
+        {% endif %}
+
+        <!-- Status Dropdown (visible on hover or simple select) - For simplicity, using a small context menu or just clicking card to edit -->
+    </div>
+    <h4 class="text-sm font-semibold text-gray-800 mb-1 leading-snug">{{ task.title }}</h4>
+
+    <div class="flex justify-between items-end mt-3">
+        <div class="flex items-center space-x-2">
+            {% if task.assignee %}
+            <span class="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded" title="Assignee">{{
+                task.assignee.username }}</span>
+            {% else %}
+            <span class="text-xs text-gray-400">미배정</span>
+            {% endif %}
+        </div>
+
+        <div class="text-xs text-gray-400">
+            {% if task.start_date and task.due_date %}
+            <span>{{ task.start_date.strftime('%y.%m.%d') }} ~ {{ task.due_date.strftime('%y.%m.%d') }}</span>
+            {% elif task.due_date %}
+            <span class="{{ 'text-red-500 font-bold' if task.due_date < task.due_date.today() else '' }}">
+                ~ {{ task.due_date.strftime('%y.%m.%d') }}
+            </span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal (One per task is not efficient for 1000s of tasks, but fine for small scale MVP) -->

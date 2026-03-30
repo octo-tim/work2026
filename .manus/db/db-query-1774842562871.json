@@ -1,0 +1,109 @@
+{
+  "query": "SELECT division, productGroup, week1Sales, week2Sales, week3Sales, week4Sales, monthlyTarget FROM sales_records WHERE year = 2026 AND month = 3 ORDER BY division, productGroup;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT division, productGroup, week1Sales, week2Sales, week3Sales, week4Sales, monthlyTarget FROM sales_records WHERE year = 2026 AND month = 3 ORDER BY division, productGroup;",
+  "rows": [
+    {
+      "division": "bombom",
+      "productGroup": "본사",
+      "week1Sales": "132365000",
+      "week2Sales": "96435810",
+      "week3Sales": "89225899",
+      "week4Sales": "104666226",
+      "monthlyTarget": "478800000"
+    },
+    {
+      "division": "bombom",
+      "productGroup": "지사",
+      "week1Sales": "74722000",
+      "week2Sales": "24421500",
+      "week3Sales": "58741821",
+      "week4Sales": "54274095",
+      "monthlyTarget": "200000000"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "기타",
+      "week1Sales": "701450",
+      "week2Sales": "1299800",
+      "week3Sales": "5720035",
+      "week4Sales": "3820992",
+      "monthlyTarget": "0"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "리코코",
+      "week1Sales": "980100",
+      "week2Sales": "3291600",
+      "week3Sales": "0",
+      "week4Sales": "0",
+      "monthlyTarget": "37500000"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "에르모어",
+      "week1Sales": "39930000",
+      "week2Sales": "2392500",
+      "week3Sales": "0",
+      "week4Sales": "14175000",
+      "monthlyTarget": "0"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "크림하우스",
+      "week1Sales": "10769220",
+      "week2Sales": "4398240",
+      "week3Sales": "6213200",
+      "week4Sales": "3959200",
+      "monthlyTarget": "36720600"
+    },
+    {
+      "division": "online",
+      "productGroup": "기타",
+      "week1Sales": "0",
+      "week2Sales": "0",
+      "week3Sales": "24616",
+      "week4Sales": "0",
+      "monthlyTarget": "15000000"
+    },
+    {
+      "division": "online",
+      "productGroup": "봄봄",
+      "week1Sales": "26562742",
+      "week2Sales": "26494842",
+      "week3Sales": "13887064",
+      "week4Sales": "6597666",
+      "monthlyTarget": "108000000"
+    },
+    {
+      "division": "online",
+      "productGroup": "슈슈비",
+      "week1Sales": "113784312",
+      "week2Sales": "92429013",
+      "week3Sales": "317914448",
+      "week4Sales": "138256698",
+      "monthlyTarget": "300000000"
+    },
+    {
+      "division": "ricoco",
+      "productGroup": "시공매출",
+      "week1Sales": "0",
+      "week2Sales": "15194270",
+      "week3Sales": "17375423",
+      "week4Sales": "5915910",
+      "monthlyTarget": "0"
+    },
+    {
+      "division": "ricoco",
+      "productGroup": "온라인매출",
+      "week1Sales": "5495700",
+      "week2Sales": "0",
+      "week3Sales": "0",
+      "week4Sales": "0",
+      "monthlyTarget": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "division\tproductGroup\tweek1Sales\tweek2Sales\tweek3Sales\tweek4Sales\tmonthlyTarget\nbombom\t본사\t132365000\t96435810\t89225899\t104666226\t478800000\nbombom\t지사\t74722000\t24421500\t58741821\t54274095\t200000000\nmanufacturing\t기타\t701450\t1299800\t5720035\t3820992\t0\nmanufacturing\t리코코\t980100\t3291600\t0\t0\t37500000\nmanufacturing\t에르모어\t39930000\t2392500\t0\t14175000\t0\nmanufacturing\t크림하우스\t10769220\t4398240\t6213200\t3959200\t36720600\nonline\t기타\t0\t0\t24616\t0\t15000000\nonline\t봄봄\t26562742\t26494842\t13887064\t6597666\t108000000\nonline\t슈슈비\t113784312\t92429013\t317914448\t138256698\t300000000\nricoco\t시공매출\t0\t15194270\t17375423\t5915910\t0\nricoco\t온라인매출\t5495700\t0\t0\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1588
+}

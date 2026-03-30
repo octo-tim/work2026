@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, userId, title FROM tasks WHERE title LIKE '%링크맘 클립매트%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT id, userId, title FROM tasks WHERE title LIKE '%링크맘 클립매트%';",
+  "rows": [
+    {
+      "id": "d-nBXFq5x69aDYPL3J8sN",
+      "userId": "1",
+      "title": "링크맘 클립매트 공동구매 진행"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\ttitle\nd-nBXFq5x69aDYPL3J8sN\t1\t링크맘 클립매트 공동구매 진행\n",
+  "stderr": "",
+  "execution_time_ms": 1564
+}

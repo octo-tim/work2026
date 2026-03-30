@@ -1,0 +1,75 @@
+{
+  "query": "SELECT * FROM financial_records WHERE year = 2026 AND month = 2 LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT * FROM financial_records WHERE year = 2026 AND month = 2 LIMIT 5;",
+  "rows": [
+    {
+      "id": "017b41f2-13b1-436c-a962-e37608a59551",
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "577",
+      "description": "입금 - 기업018-법인비용",
+      "sortOrder": "20",
+      "createdAt": "2026-03-04 04:08:22",
+      "updatedAt": "2026-03-04 04:08:22"
+    },
+    {
+      "id": "11eaac87-da4d-4b54-bbc5-cf660b2216ab",
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "44000",
+      "description": "출금 - 기업018-법인비용",
+      "sortOrder": "21",
+      "createdAt": "2026-03-04 04:08:22",
+      "updatedAt": "2026-03-04 04:08:22"
+    },
+    {
+      "id": "156bc119-8db1-473c-b7bb-3748280fc0f7",
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "135631958",
+      "description": "입금 - 기업012-매장거래",
+      "sortOrder": "8",
+      "createdAt": "2026-03-04 04:08:19",
+      "updatedAt": "2026-03-04 04:08:19"
+    },
+    {
+      "id": "25a7a475-0ce8-4255-a13a-10489d8174e0",
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "지사매출-우리",
+      "type": "expense",
+      "amount": "88000",
+      "description": "출금 - 지사매출-우리",
+      "sortOrder": "41",
+      "createdAt": "2026-03-04 04:08:27",
+      "updatedAt": "2026-03-04 04:08:27"
+    },
+    {
+      "id": "28624023-343e-44db-8b8f-58130af2454f",
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "15240",
+      "description": "출금 - 기업018-법인비용",
+      "sortOrder": "31",
+      "createdAt": "2026-03-04 04:08:24",
+      "updatedAt": "2026-03-04 04:08:24"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tyear\tmonth\tweek\tcategory\ttype\tamount\tdescription\tsortOrder\tcreatedAt\tupdatedAt\n017b41f2-13b1-436c-a962-e37608a59551\t2026\t2\t3\t기업018-법인비용\tincome\t577\t입금 - 기업018-법인비용\t20\t2026-03-04 04:08:22\t2026-03-04 04:08:22\n11eaac87-da4d-4b54-bbc5-cf660b2216ab\t2026\t2\t3\t기업018-법인비용\texpense\t44000\t출금 - 기업018-법인비용\t21\t2026-03-04 04:08:22\t2026-03-04 04:08:22\n156bc119-8db1-473c-b7bb-3748280fc0f7\t2026\t2\t2\t기업012-매장거래\tincome\t135631958\t입금 - 기업012-매장거래\t8\t2026-03-04 04:08:19\t2026-03-04 04:08:19\n25a7a475-0ce8-4255-a13a-10489d8174e0\t2026\t2\t4\t지사매출-우리\texpense\t88000\t출금 - 지사매출-우리\t41\t2026-03-04 04:08:27\t2026-03-04 04:08:27\n28624023-343e-44db-8b8f-58130af2454f\t2026\t2\t4\t기업018-법인비용\texpense\t15240\t출금 - 기업018-법인비용\t31\t2026-03-04 04:08:24\t2026-03-04 04:08:24\n",
+  "stderr": "",
+  "execution_time_ms": 1494
+}

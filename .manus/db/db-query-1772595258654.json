@@ -1,0 +1,35 @@
+{
+  "query": "SELECT DISTINCT division, productGroup, SUM(week1Sales + week2Sales + week3Sales + week4Sales) as total FROM sales_records WHERE division = 'manufacturing' GROUP BY division, productGroup ORDER BY productGroup;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT DISTINCT division, productGroup, SUM(week1Sales + week2Sales + week3Sales + week4Sales) as total FROM sales_records WHERE division = 'manufacturing' GROUP BY division, productGroup ORDER BY productGroup;",
+  "rows": [
+    {
+      "division": "manufacturing",
+      "productGroup": "기타",
+      "total": "19679834"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "리코코",
+      "total": "28952000"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "시공외주",
+      "total": "10436508"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "크림하우스",
+      "total": "42914800"
+    },
+    {
+      "division": "manufacturing",
+      "productGroup": "피코베리",
+      "total": "37410000"
+    }
+  ],
+  "messages": [],
+  "stdout": "division\tproductGroup\ttotal\nmanufacturing\t기타\t19679834\nmanufacturing\t리코코\t28952000\nmanufacturing\t시공외주\t10436508\nmanufacturing\t크림하우스\t42914800\nmanufacturing\t피코베리\t37410000\n",
+  "stderr": "",
+  "execution_time_ms": 1515
+}

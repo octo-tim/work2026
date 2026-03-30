@@ -1,0 +1,15 @@
+{
+  "query": "SELECT COUNT(*) as total_records, \n  SUM(CASE WHEN type='income' THEN amount ELSE 0 END) as total_income,\n  SUM(CASE WHEN type='expense' THEN amount ELSE 0 END) as total_expense\nFROM financial_records WHERE year = 2026;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT COUNT(*) as total_records, \n  SUM(CASE WHEN type='income' THEN amount ELSE 0 END) as total_income,\n  SUM(CASE WHEN type='expense' THEN amount ELSE 0 END) as total_expense\nFROM financial_records WHERE year = 2026;",
+  "rows": [
+    {
+      "total_records": "55",
+      "total_income": "1776886421",
+      "total_expense": "1253560040"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_records\ttotal_income\ttotal_expense\n55\t1776886421\t1253560040\n",
+  "stderr": "",
+  "execution_time_ms": 1522
+}

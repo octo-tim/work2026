@@ -1,0 +1,13 @@
+{
+  "query": "SELECT COUNT(*) as cnt FROM financial_records WHERE year = 2026 AND month = 2;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT COUNT(*) as cnt FROM financial_records WHERE year = 2026 AND month = 2;",
+  "rows": [
+    {
+      "cnt": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "cnt\n0\n",
+  "stderr": "",
+  "execution_time_ms": 1571
+}

@@ -1,0 +1,26 @@
+{
+  "query": "SELECT * FROM financial_balances WHERE year = 2026;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT * FROM financial_balances WHERE year = 2026;",
+  "rows": [
+    {
+      "id": "92ab1e37-5f2d-4b31-a0f8-6913439ad241",
+      "year": "2026",
+      "month": "3",
+      "openingBalance": "21498550",
+      "createdAt": "2026-03-09 01:13:43",
+      "updatedAt": "2026-03-09 01:13:43"
+    },
+    {
+      "id": "9ca1489e-e8b2-4a6b-86b4-00de137cfe0e",
+      "year": "2026",
+      "month": "2",
+      "openingBalance": "122780828",
+      "createdAt": "2026-03-09 01:13:43",
+      "updatedAt": "2026-03-09 01:13:43"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tyear\tmonth\topeningBalance\tcreatedAt\tupdatedAt\n92ab1e37-5f2d-4b31-a0f8-6913439ad241\t2026\t3\t21498550\t2026-03-09 01:13:43\t2026-03-09 01:13:43\n9ca1489e-e8b2-4a6b-86b4-00de137cfe0e\t2026\t2\t122780828\t2026-03-09 01:13:43\t2026-03-09 01:13:43\n",
+  "stderr": "",
+  "execution_time_ms": 1578
+}

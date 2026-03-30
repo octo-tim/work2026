@@ -1,0 +1,82 @@
+{
+  "query": "SHOW TABLES;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SHOW TABLES;",
+  "rows": [
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "__drizzle_migrations"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "archived_task_progress_logs"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "archived_tasks"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "businessPlanActuals"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "businessPlanHistory"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "businessPlans"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "contract_channels"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "contract_records"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "contract_sub_channels"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "divisions"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "goals"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "meeting_minutes"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "monthly_messages"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "positions"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "quarterly_reviews"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "ranks"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "sales_categories"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "sales_events"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "sales_items"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "sales_records"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "task_progress_logs"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "tasks"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "teams"
+    },
+    {
+      "Tables_in_LBTFCENZjm3KAvBMhoEbjE": "users"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_LBTFCENZjm3KAvBMhoEbjE\n__drizzle_migrations\narchived_task_progress_logs\narchived_tasks\nbusinessPlanActuals\nbusinessPlanHistory\nbusinessPlans\ncontract_channels\ncontract_records\ncontract_sub_channels\ndivisions\ngoals\nmeeting_minutes\nmonthly_messages\npositions\nquarterly_reviews\nranks\nsales_categories\nsales_events\nsales_items\nsales_records\ntask_progress_logs\ntasks\nteams\nusers\n",
+  "stderr": "",
+  "execution_time_ms": 1514
+}

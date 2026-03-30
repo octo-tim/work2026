@@ -1,0 +1,20 @@
+{
+  "query": "SELECT year, month, openingBalance FROM financial_balances WHERE year = 2026 ORDER BY month;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT year, month, openingBalance FROM financial_balances WHERE year = 2026 ORDER BY month;",
+  "rows": [
+    {
+      "year": "2026",
+      "month": "2",
+      "openingBalance": "208769087"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "openingBalance": "107486809"
+    }
+  ],
+  "messages": [],
+  "stdout": "year\tmonth\topeningBalance\n2026\t2\t208769087\n2026\t3\t107486809\n",
+  "stderr": "",
+  "execution_time_ms": 1508
+}

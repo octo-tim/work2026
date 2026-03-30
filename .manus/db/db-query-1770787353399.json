@@ -1,0 +1,15 @@
+{
+  "query": "SELECT userId, COUNT(*) as cnt, GROUP_CONCAT(DISTINCT division) as divisions FROM sales_records WHERE year = 2026 AND month = 2 GROUP BY userId",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT userId, COUNT(*) as cnt, GROUP_CONCAT(DISTINCT division) as divisions FROM sales_records WHERE year = 2026 AND month = 2 GROUP BY userId",
+  "rows": [
+    {
+      "userId": "1",
+      "cnt": "8",
+      "divisions": "bombom,manufacturing,online"
+    }
+  ],
+  "messages": [],
+  "stdout": "userId\tcnt\tdivisions\n1\t8\tbombom,manufacturing,online\n",
+  "stderr": "",
+  "execution_time_ms": 1480
+}

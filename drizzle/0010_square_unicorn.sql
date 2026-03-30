@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `canEditSales` boolean DEFAULT false NOT NULL;

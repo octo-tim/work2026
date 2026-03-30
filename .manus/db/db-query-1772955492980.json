@@ -1,0 +1,15 @@
+{
+  "query": "SELECT COUNT(*) as total_count, year, month FROM financial_records GROUP BY year, month;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT COUNT(*) as total_count, year, month FROM financial_records GROUP BY year, month;",
+  "rows": [
+    {
+      "total_count": "41",
+      "year": "2026",
+      "month": "2"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_count\tyear\tmonth\n41\t2026\t2\n",
+  "stderr": "",
+  "execution_time_ms": 1542
+}

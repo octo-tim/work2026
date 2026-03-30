@@ -1,0 +1,34 @@
+{
+  "query": "SELECT year, month, type, SUM(amount) as total FROM financial_records GROUP BY year, month, type ORDER BY year, month, type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT year, month, type, SUM(amount) as total FROM financial_records GROUP BY year, month, type ORDER BY year, month, type;",
+  "rows": [
+    {
+      "year": "2026",
+      "month": "2",
+      "type": "income",
+      "total": "1066864084"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "type": "expense",
+      "total": "1168146362"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "type": "income",
+      "total": "864937858"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "type": "expense",
+      "total": "154340940"
+    }
+  ],
+  "messages": [],
+  "stdout": "year\tmonth\ttype\ttotal\n2026\t2\tincome\t1066864084\n2026\t2\texpense\t1168146362\n2026\t3\tincome\t864937858\n2026\t3\texpense\t154340940\n",
+  "stderr": "",
+  "execution_time_ms": 1555
+}

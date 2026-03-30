@@ -1,0 +1,76 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1770279196234,
+      "tag": "0000_minor_power_pack",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1770281494345,
+      "tag": "0001_lowly_warhawk",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1770867432893,
+      "tag": "0002_square_the_hunter",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1771904890930,
+      "tag": "0003_faithful_black_cat",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1772596005732,
+      "tag": "0004_normal_sage",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1772958721901,
+      "tag": "0005_rich_paladin",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1773635279689,
+      "tag": "0006_neat_nextwave",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1773638305995,
+      "tag": "0007_chunky_beyonder",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1773640032193,
+      "tag": "0008_pink_cardiac",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1773646332550,
+      "tag": "0009_cuddly_tarot",
+      "breakpoints": true
+    }
+  ]
+}

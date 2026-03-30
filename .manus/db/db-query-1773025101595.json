@@ -1,0 +1,94 @@
+{
+  "query": "SELECT month, week, type, COUNT(*) as cnt, SUM(amount) as total FROM financial_records WHERE year = 2026 GROUP BY month, week, type ORDER BY month, week, type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT month, week, type, COUNT(*) as cnt, SUM(amount) as total FROM financial_records WHERE year = 2026 GROUP BY month, week, type ORDER BY month, week, type;",
+  "rows": [
+    {
+      "month": "2",
+      "week": "1",
+      "type": "income",
+      "cnt": "6",
+      "total": "317845282"
+    },
+    {
+      "month": "2",
+      "week": "1",
+      "type": "expense",
+      "cnt": "2",
+      "total": "113131994"
+    },
+    {
+      "month": "2",
+      "week": "2",
+      "type": "income",
+      "cnt": "7",
+      "total": "355735544"
+    },
+    {
+      "month": "2",
+      "week": "2",
+      "type": "expense",
+      "cnt": "4",
+      "total": "458898236"
+    },
+    {
+      "month": "2",
+      "week": "3",
+      "type": "income",
+      "cnt": "5",
+      "total": "103183103"
+    },
+    {
+      "month": "2",
+      "week": "3",
+      "type": "expense",
+      "cnt": "3",
+      "total": "170098432"
+    },
+    {
+      "month": "2",
+      "week": "4",
+      "type": "income",
+      "cnt": "7",
+      "total": "301006084"
+    },
+    {
+      "month": "2",
+      "week": "4",
+      "type": "expense",
+      "cnt": "7",
+      "total": "436923629"
+    },
+    {
+      "month": "3",
+      "week": "1",
+      "type": "income",
+      "cnt": "6",
+      "total": "663626294"
+    },
+    {
+      "month": "3",
+      "week": "1",
+      "type": "expense",
+      "cnt": "4",
+      "total": "73949049"
+    },
+    {
+      "month": "3",
+      "week": "2",
+      "type": "income",
+      "cnt": "3",
+      "total": "35490114"
+    },
+    {
+      "month": "3",
+      "week": "2",
+      "type": "expense",
+      "cnt": "1",
+      "total": "558700"
+    }
+  ],
+  "messages": [],
+  "stdout": "month\tweek\ttype\tcnt\ttotal\n2\t1\tincome\t6\t317845282\n2\t1\texpense\t2\t113131994\n2\t2\tincome\t7\t355735544\n2\t2\texpense\t4\t458898236\n2\t3\tincome\t5\t103183103\n2\t3\texpense\t3\t170098432\n2\t4\tincome\t7\t301006084\n2\t4\texpense\t7\t436923629\n3\t1\tincome\t6\t663626294\n3\t1\texpense\t4\t73949049\n3\t2\tincome\t3\t35490114\n3\t2\texpense\t1\t558700\n",
+  "stderr": "",
+  "execution_time_ms": 1543
+}

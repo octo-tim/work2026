@@ -1,0 +1,70 @@
+{
+  "query": "SELECT s.userId, u.koreanName, s.year, s.month, s.division, COUNT(*) as cnt, SUM(s.week1Sales) as w1, SUM(s.week2Sales) as w2 FROM sales_records s LEFT JOIN users u ON s.userId = u.id GROUP BY s.userId, u.koreanName, s.year, s.month, s.division ORDER BY s.year DESC, s.month DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT s.userId, u.koreanName, s.year, s.month, s.division, COUNT(*) as cnt, SUM(s.week1Sales) as w1, SUM(s.week2Sales) as w2 FROM sales_records s LEFT JOIN users u ON s.userId = u.id GROUP BY s.userId, u.koreanName, s.year, s.month, s.division ORDER BY s.year DESC, s.month DESC;",
+  "rows": [
+    {
+      "userId": "1",
+      "koreanName": "윤경식",
+      "year": "2026",
+      "month": "2",
+      "division": "bombom",
+      "cnt": "2",
+      "w1": "0",
+      "w2": "0"
+    },
+    {
+      "userId": "1",
+      "koreanName": "윤경식",
+      "year": "2026",
+      "month": "2",
+      "division": "online",
+      "cnt": "3",
+      "w1": "0",
+      "w2": "0"
+    },
+    {
+      "userId": "1",
+      "koreanName": "윤경식",
+      "year": "2026",
+      "month": "2",
+      "division": "manufacturing",
+      "cnt": "3",
+      "w1": "0",
+      "w2": "0"
+    },
+    {
+      "userId": "1",
+      "koreanName": "윤경식",
+      "year": "2026",
+      "month": "1",
+      "division": "manufacturing",
+      "cnt": "3",
+      "w1": "8418900",
+      "w2": "6081091"
+    },
+    {
+      "userId": "1",
+      "koreanName": "윤경식",
+      "year": "2026",
+      "month": "1",
+      "division": "bombom",
+      "cnt": "2",
+      "w1": "182734773",
+      "w2": "99330872"
+    },
+    {
+      "userId": "1",
+      "koreanName": "윤경식",
+      "year": "2026",
+      "month": "1",
+      "division": "online",
+      "cnt": "3",
+      "w1": "93074860",
+      "w2": "146601529"
+    }
+  ],
+  "messages": [],
+  "stdout": "userId\tkoreanName\tyear\tmonth\tdivision\tcnt\tw1\tw2\n1\t윤경식\t2026\t2\tbombom\t2\t0\t0\n1\t윤경식\t2026\t2\tonline\t3\t0\t0\n1\t윤경식\t2026\t2\tmanufacturing\t3\t0\t0\n1\t윤경식\t2026\t1\tmanufacturing\t3\t8418900\t6081091\n1\t윤경식\t2026\t1\tbombom\t2\t182734773\t99330872\n1\t윤경식\t2026\t1\tonline\t3\t93074860\t146601529\n",
+  "stderr": "",
+  "execution_time_ms": 1515
+}

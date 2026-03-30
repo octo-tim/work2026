@@ -1,0 +1,100 @@
+{
+  "query": "SELECT id, year, category, division, subDivision, month1, month2 FROM businessPlans LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT id, year, category, division, subDivision, month1, month2 FROM businessPlans LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "year": "2026",
+      "category": "quantity",
+      "division": "bombom_construction",
+      "subDivision": "NULL",
+      "month1": "26000.00",
+      "month2": "26760.00"
+    },
+    {
+      "id": "2",
+      "year": "2026",
+      "category": "quantity",
+      "division": "bombom_construction",
+      "subDivision": "headquarters",
+      "month1": "17000.00",
+      "month2": "17000.00"
+    },
+    {
+      "id": "3",
+      "year": "2026",
+      "category": "quantity",
+      "division": "bombom_construction",
+      "subDivision": "branch",
+      "month1": "9000.00",
+      "month2": "9760.00"
+    },
+    {
+      "id": "4",
+      "year": "2026",
+      "category": "quantity",
+      "division": "online_sales",
+      "subDivision": "NULL",
+      "month1": "24000.00",
+      "month2": "24500.00"
+    },
+    {
+      "id": "5",
+      "year": "2026",
+      "category": "quantity",
+      "division": "online_sales",
+      "subDivision": "bombom",
+      "month1": "8000.00",
+      "month2": "9000.00"
+    },
+    {
+      "id": "6",
+      "year": "2026",
+      "category": "quantity",
+      "division": "online_sales",
+      "subDivision": "shushuvi",
+      "month1": "15000.00",
+      "month2": "15000.00"
+    },
+    {
+      "id": "7",
+      "year": "2026",
+      "category": "quantity",
+      "division": "online_sales",
+      "subDivision": "etc",
+      "month1": "1000.00",
+      "month2": "500.00"
+    },
+    {
+      "id": "8",
+      "year": "2026",
+      "category": "quantity",
+      "division": "oem_supply",
+      "subDivision": "NULL",
+      "month1": "2500.00",
+      "month2": "2711.00"
+    },
+    {
+      "id": "9",
+      "year": "2026",
+      "category": "quantity",
+      "division": "oem_supply",
+      "subDivision": "linkmom",
+      "month1": "0.00",
+      "month2": "3500.00"
+    },
+    {
+      "id": "10",
+      "year": "2026",
+      "category": "quantity",
+      "division": "oem_supply",
+      "subDivision": "ricoco_120",
+      "month1": "0.00",
+      "month2": "0.00"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tyear\tcategory\tdivision\tsubDivision\tmonth1\tmonth2\n1\t2026\tquantity\tbombom_construction\tNULL\t26000.00\t26760.00\n2\t2026\tquantity\tbombom_construction\theadquarters\t17000.00\t17000.00\n3\t2026\tquantity\tbombom_construction\tbranch\t9000.00\t9760.00\n4\t2026\tquantity\tonline_sales\tNULL\t24000.00\t24500.00\n5\t2026\tquantity\tonline_sales\tbombom\t8000.00\t9000.00\n6\t2026\tquantity\tonline_sales\tshushuvi\t15000.00\t15000.00\n7\t2026\tquantity\tonline_sales\tetc\t1000.00\t500.00\n8\t2026\tquantity\toem_supply\tNULL\t2500.00\t2711.00\n9\t2026\tquantity\toem_supply\tlinkmom\t0.00\t3500.00\n10\t2026\tquantity\toem_supply\tricoco_120\t0.00\t0.00\n",
+  "stderr": "",
+  "execution_time_ms": 1561
+}

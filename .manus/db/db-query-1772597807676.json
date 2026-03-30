@@ -1,0 +1,70 @@
+{
+  "query": "SELECT week, type, category, amount FROM financial_records WHERE year = 2026 AND month = 2 ORDER BY week, type, category LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT week, type, category, amount FROM financial_records WHERE year = 2026 AND month = 2 ORDER BY week, type, category LIMIT 10;",
+  "rows": [
+    {
+      "week": "1",
+      "type": "income",
+      "category": "기업012-매장거래",
+      "amount": "158477767"
+    },
+    {
+      "week": "1",
+      "type": "income",
+      "category": "기업018-법인비용",
+      "amount": "465348"
+    },
+    {
+      "week": "1",
+      "type": "income",
+      "category": "기업040-시공비결재",
+      "amount": "166000"
+    },
+    {
+      "week": "1",
+      "type": "income",
+      "category": "매트개인-우리",
+      "amount": "45603427"
+    },
+    {
+      "week": "1",
+      "type": "income",
+      "category": "비용계좌-우리",
+      "amount": "1296540"
+    },
+    {
+      "week": "1",
+      "type": "income",
+      "category": "지사매출-우리",
+      "amount": "111836200"
+    },
+    {
+      "week": "1",
+      "type": "expense",
+      "category": "기업032-급여",
+      "amount": "621028"
+    },
+    {
+      "week": "1",
+      "type": "expense",
+      "category": "비용계좌-우리",
+      "amount": "112510966"
+    },
+    {
+      "week": "2",
+      "type": "income",
+      "category": "기업012-매장거래",
+      "amount": "135631958"
+    },
+    {
+      "week": "2",
+      "type": "income",
+      "category": "기업018-법인비용",
+      "amount": "21330"
+    }
+  ],
+  "messages": [],
+  "stdout": "week\ttype\tcategory\tamount\n1\tincome\t기업012-매장거래\t158477767\n1\tincome\t기업018-법인비용\t465348\n1\tincome\t기업040-시공비결재\t166000\n1\tincome\t매트개인-우리\t45603427\n1\tincome\t비용계좌-우리\t1296540\n1\tincome\t지사매출-우리\t111836200\n1\texpense\t기업032-급여\t621028\n1\texpense\t비용계좌-우리\t112510966\n2\tincome\t기업012-매장거래\t135631958\n2\tincome\t기업018-법인비용\t21330\n",
+  "stderr": "",
+  "execution_time_ms": 1494
+}

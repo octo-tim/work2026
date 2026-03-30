@@ -1,0 +1,8 @@
+{
+  "query": "SELECT sr.user_id, u.name, u.first_name, u.last_name, sr.division, sr.product_group, sr.year, sr.month, sr.week1_sales, sr.week2_sales, sr.monthly_target FROM sales_records sr LEFT JOIN users u ON sr.user_id = u.id WHERE sr.year = 2026 AND sr.month = 2 ORDER BY sr.user_id, sr.division, sr.product_group LIMIT 30;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT sr.user_id, u.name, u.first_name, u.last_name, sr.division, sr.product_group, sr.year, sr.month, sr.week1_sales, sr.week2_sales, sr.monthly_target FROM sales_records sr LEFT JOIN users u ON sr.user_id = u.id WHERE sr.year = 2026 AND sr.month = 2 ORDER BY sr.user_id, sr.division, sr.product_group LIMIT 30;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'sr.user_id' in 'on clause'"
+  ]
+}

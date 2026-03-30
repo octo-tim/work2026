@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE contractBusinessPlans \nADD COLUMN actual1 INT DEFAULT 0,\nADD COLUMN actual2 INT DEFAULT 0,\nADD COLUMN actual3 INT DEFAULT 0,\nADD COLUMN actual4 INT DEFAULT 0,\nADD COLUMN actual5 INT DEFAULT 0,\nADD COLUMN actual6 INT DEFAULT 0,\nADD COLUMN actual7 INT DEFAULT 0,\nADD COLUMN actual8 INT DEFAULT 0,\nADD COLUMN actual9 INT DEFAULT 0,\nADD COLUMN actual10 INT DEFAULT 0,\nADD COLUMN actual11 INT DEFAULT 0,\nADD COLUMN actual12 INT DEFAULT 0,\nADD COLUMN actualTotal INT DEFAULT 0;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute ALTER TABLE contractBusinessPlans \nADD COLUMN actual1 INT DEFAULT 0,\nADD COLUMN actual2 INT DEFAULT 0,\nADD COLUMN actual3 INT DEFAULT 0,\nADD COLUMN actual4 INT DEFAULT 0,\nADD COLUMN actual5 INT DEFAULT 0,\nADD COLUMN actual6 INT DEFAULT 0,\nADD COLUMN actual7 INT DEFAULT 0,\nADD COLUMN actual8 INT DEFAULT 0,\nADD COLUMN actual9 INT DEFAULT 0,\nADD COLUMN actual10 INT DEFAULT 0,\nADD COLUMN actual11 INT DEFAULT 0,\nADD COLUMN actual12 INT DEFAULT 0,\nADD COLUMN actualTotal INT DEFAULT 0;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 5733
+}

@@ -1,0 +1,90 @@
+{
+  "query": "SELECT id, userId, division, productGroup, year, month, week1Sales, week2Sales FROM sales_records WHERE year = 2026 AND month = 2 LIMIT 10",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT id, userId, division, productGroup, year, month, week1Sales, week2Sales FROM sales_records WHERE year = 2026 AND month = 2 LIMIT 10",
+  "rows": [
+    {
+      "id": "2xultegoodEE4BBpacsiw",
+      "userId": "1",
+      "division": "bombom",
+      "productGroup": "본사",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    },
+    {
+      "id": "3ndaal4WPLJRwbzsy0kw3",
+      "userId": "1",
+      "division": "bombom",
+      "productGroup": "지사",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    },
+    {
+      "id": "dKZZ1uxJkhpSIL-h_u6Dx",
+      "userId": "1",
+      "division": "manufacturing",
+      "productGroup": "크림하우스",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    },
+    {
+      "id": "lEuxvxYjg4ZELqTjVzmSC",
+      "userId": "1",
+      "division": "manufacturing",
+      "productGroup": "리코코",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    },
+    {
+      "id": "MFaRTpJImNLMO6Yzzg1Ab",
+      "userId": "1",
+      "division": "manufacturing",
+      "productGroup": "기타",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    },
+    {
+      "id": "oHHmLTMn7PH7K-WXeS4kV",
+      "userId": "1",
+      "division": "online",
+      "productGroup": "봄봄",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    },
+    {
+      "id": "p0XwU7AQ65es7-kUXGyFd",
+      "userId": "1",
+      "division": "online",
+      "productGroup": "기타",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    },
+    {
+      "id": "XOYgmvMFQyg5fTZXLPEkS",
+      "userId": "1",
+      "division": "online",
+      "productGroup": "슈슈비",
+      "year": "2026",
+      "month": "2",
+      "week1Sales": "0",
+      "week2Sales": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\tdivision\tproductGroup\tyear\tmonth\tweek1Sales\tweek2Sales\n2xultegoodEE4BBpacsiw\t1\tbombom\t본사\t2026\t2\t0\t0\n3ndaal4WPLJRwbzsy0kw3\t1\tbombom\t지사\t2026\t2\t0\t0\ndKZZ1uxJkhpSIL-h_u6Dx\t1\tmanufacturing\t크림하우스\t2026\t2\t0\t0\nlEuxvxYjg4ZELqTjVzmSC\t1\tmanufacturing\t리코코\t2026\t2\t0\t0\nMFaRTpJImNLMO6Yzzg1Ab\t1\tmanufacturing\t기타\t2026\t2\t0\t0\noHHmLTMn7PH7K-WXeS4kV\t1\tonline\t봄봄\t2026\t2\t0\t0\np0XwU7AQ65es7-kUXGyFd\t1\tonline\t기타\t2026\t2\t0\t0\nXOYgmvMFQyg5fTZXLPEkS\t1\tonline\t슈슈비\t2026\t2\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1538
+}

@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `koreanName` varchar(50);

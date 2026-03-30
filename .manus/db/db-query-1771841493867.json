@@ -1,0 +1,22 @@
+{
+  "query": "SELECT t.id, t.userId, t.title, u.name as userName FROM tasks t LEFT JOIN users u ON t.userId = u.id WHERE t.title LIKE '%클립매트%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT t.id, t.userId, t.title, u.name as userName FROM tasks t LEFT JOIN users u ON t.userId = u.id WHERE t.title LIKE '%클립매트%';",
+  "rows": [
+    {
+      "id": "6SblyzDuChGvqBux2kQxp",
+      "userId": "390277",
+      "title": "일산 유아림 맘앤 베이비엑스포 슈슈비 클립매트 위탁판매",
+      "userName": "htchoi"
+    },
+    {
+      "id": "d-nBXFq5x69aDYPL3J8sN",
+      "userId": "1",
+      "title": "피코베리 클립매트 공동구매 진행",
+      "userName": "경식 윤"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\ttitle\tuserName\n6SblyzDuChGvqBux2kQxp\t390277\t일산 유아림 맘앤 베이비엑스포 슈슈비 클립매트 위탁판매\thtchoi\nd-nBXFq5x69aDYPL3J8sN\t1\t피코베리 클립매트 공동구매 진행\t경식 윤\n",
+  "stderr": "",
+  "execution_time_ms": 1530
+}

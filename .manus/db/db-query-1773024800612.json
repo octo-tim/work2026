@@ -1,0 +1,698 @@
+{
+  "query": "SELECT year, month, week, category, type, amount FROM financial_records WHERE year = 2026 ORDER BY month, week, category, type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT year, month, week, category, type, amount FROM financial_records WHERE year = 2026 ORDER BY month, week, category, type;",
+  "rows": [
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "231638657"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "561110"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "4400"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "1242056"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "기업040-시공비결재",
+      "type": "income",
+      "amount": "200000"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "기업040-시공비결재",
+      "type": "expense",
+      "amount": "185560"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "84986427"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "401482100"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "185649027"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "1",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "262603282"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "144225459"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "21330"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "4500"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "기업029_환기매출",
+      "type": "income",
+      "amount": "27500000"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "863078"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "기업040-시공비결재",
+      "type": "income",
+      "amount": "60600"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "44409500"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "23005520"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "458538458"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "152003249"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "2",
+      "category": "지사매출-우리",
+      "type": "expense",
+      "amount": "50900"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "6897849"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "577"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "10949929"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "669000"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "15789000"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "17503774"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "158479503"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "3",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "62991903"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "124594004"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업012-매장거래",
+      "type": "expense",
+      "amount": "3608401"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "13373069"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "15240"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업032-급여",
+      "type": "income",
+      "amount": "5483440"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "11897779"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "기업040-시공비결재",
+      "type": "income",
+      "amount": "185560"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "47062500"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "매트개인-우리",
+      "type": "expense",
+      "amount": "5397000"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "5397000"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "415908709"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "우리-외화계좌",
+      "type": "expense",
+      "amount": "8500"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "104910511"
+    },
+    {
+      "year": "2026",
+      "month": "2",
+      "week": "4",
+      "category": "지사매출-우리",
+      "type": "expense",
+      "amount": "88000"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "231638657"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "561110"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "4400"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "1242056"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "기업040-시공비결재",
+      "type": "income",
+      "amount": "200000"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "기업040-시공비결재",
+      "type": "expense",
+      "amount": "185560"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "84986427"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "401482100"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "185649027"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "1",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "262603282"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "144225459"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "21330"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "4500"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "기업029_환기매출",
+      "type": "income",
+      "amount": "27500000"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "863078"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "기업040-시공비결재",
+      "type": "income",
+      "amount": "60600"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "44409500"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "23005520"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "458538458"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "152003249"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "2",
+      "category": "지사매출-우리",
+      "type": "expense",
+      "amount": "50900"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "6897849"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "577"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "10949929"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "669000"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "15789000"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "17503774"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "158479503"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "3",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "62991903"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "기업012-매장거래",
+      "type": "income",
+      "amount": "124594004"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "기업012-매장거래",
+      "type": "expense",
+      "amount": "3608401"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "기업018-법인비용",
+      "type": "income",
+      "amount": "13373069"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "기업018-법인비용",
+      "type": "expense",
+      "amount": "15240"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "기업032-급여",
+      "type": "income",
+      "amount": "5483440"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "기업032-급여",
+      "type": "expense",
+      "amount": "11897779"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "기업040-시공비결재",
+      "type": "income",
+      "amount": "185560"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "매트개인-우리",
+      "type": "income",
+      "amount": "47062500"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "매트개인-우리",
+      "type": "expense",
+      "amount": "5397000"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "비용계좌-우리",
+      "type": "income",
+      "amount": "5397000"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "비용계좌-우리",
+      "type": "expense",
+      "amount": "415908709"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "우리-외화계좌",
+      "type": "expense",
+      "amount": "8500"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "지사매출-우리",
+      "type": "income",
+      "amount": "104910511"
+    },
+    {
+      "year": "2026",
+      "month": "3",
+      "week": "4",
+      "category": "지사매출-우리",
+      "type": "expense",
+      "amount": "88000"
+    }
+  ],
+  "messages": [],
+  "stdout": "year\tmonth\tweek\tcategory\ttype\tamount\n2026\t2\t1\t기업012-매장거래\tincome\t231638657\n2026\t2\t1\t기업018-법인비용\tincome\t561110\n2026\t2\t1\t기업018-법인비용\texpense\t4400\n2026\t2\t1\t기업032-급여\texpense\t1242056\n2026\t2\t1\t기업040-시공비결재\tincome\t200000\n2026\t2\t1\t기업040-시공비결재\texpense\t185560\n2026\t2\t1\t매트개인-우리\tincome\t84986427\n2026\t2\t1\t비용계좌-우리\tincome\t401482100\n2026\t2\t1\t비용계좌-우리\texpense\t185649027\n2026\t2\t1\t지사매출-우리\tincome\t262603282\n2026\t2\t2\t기업012-매장거래\tincome\t144225459\n2026\t2\t2\t기업018-법인비용\tincome\t21330\n2026\t2\t2\t기업018-법인비용\texpense\t4500\n2026\t2\t2\t기업029_환기매출\tincome\t27500000\n2026\t2\t2\t기업032-급여\texpense\t863078\n2026\t2\t2\t기업040-시공비결재\tincome\t60600\n2026\t2\t2\t매트개인-우리\tincome\t44409500\n2026\t2\t2\t비용계좌-우리\tincome\t23005520\n2026\t2\t2\t비용계좌-우리\texpense\t458538458\n2026\t2\t2\t지사매출-우리\tincome\t152003249\n2026\t2\t2\t지사매출-우리\texpense\t50900\n2026\t2\t3\t기업012-매장거래\tincome\t6897849\n2026\t2\t3\t기업018-법인비용\tincome\t577\n2026\t2\t3\t기업018-법인비용\texpense\t10949929\n2026\t2\t3\t기업032-급여\texpense\t669000\n2026\t2\t3\t매트개인-우리\tincome\t15789000\n2026\t2\t3\t비용계좌-우리\tincome\t17503774\n2026\t2\t3\t비용계좌-우리\texpense\t158479503\n2026\t2\t3\t지사매출-우리\tincome\t62991903\n2026\t2\t4\t기업012-매장거래\tincome\t124594004\n2026\t2\t4\t기업012-매장거래\texpense\t3608401\n2026\t2\t4\t기업018-법인비용\tincome\t13373069\n2026\t2\t4\t기업018-법인비용\texpense\t15240\n2026\t2\t4\t기업032-급여\tincome\t5483440\n2026\t2\t4\t기업032-급여\texpense\t11897779\n2026\t2\t4\t기업040-시공비결재\tincome\t185560\n2026\t2\t4\t매트개인-우리\tincome\t47062500\n2026\t2\t4\t매트개인-우리\texpense\t5397000\n2026\t2\t4\t비용계좌-우리\tincome\t5397000\n2026\t2\t4\t비용계좌-우리\texpense\t415908709\n2026\t2\t4\t우리-외화계좌\texpense\t8500\n2026\t2\t4\t지사매출-우리\tincome\t104910511\n2026\t2\t4\t지사매출-우리\texpense\t88000\n2026\t3\t1\t기업012-매장거래\tincome\t231638657\n2026\t3\t1\t기업018-법인비용\tincome\t561110\n2026\t3\t1\t기업018-법인비용\texpense\t4400\n2026\t3\t1\t기업032-급여\texpense\t1242056\n2026\t3\t1\t기업040-시공비결재\tincome\t200000\n2026\t3\t1\t기업040-시공비결재\texpense\t185560\n2026\t3\t1\t매트개인-우리\tincome\t84986427\n2026\t3\t1\t비용계좌-우리\tincome\t401482100\n2026\t3\t1\t비용계좌-우리\texpense\t185649027\n2026\t3\t1\t지사매출-우리\tincome\t262603282\n2026\t3\t2\t기업012-매장거래\tincome\t144225459\n2026\t3\t2\t기업018-법인비용\tincome\t21330\n2026\t3\t2\t기업018-법인비용\texpense\t4500\n2026\t3\t2\t기업029_환기매출\tincome\t27500000\n2026\t3\t2\t기업032-급여\texpense\t863078\n2026\t3\t2\t기업040-시공비결재\tincome\t60600\n2026\t3\t2\t매트개인-우리\tincome\t44409500\n2026\t3\t2\t비용계좌-우리\tincome\t23005520\n2026\t3\t2\t비용계좌-우리\texpense\t458538458\n2026\t3\t2\t지사매출-우리\tincome\t152003249\n2026\t3\t2\t지사매출-우리\texpense\t50900\n2026\t3\t3\t기업012-매장거래\tincome\t6897849\n2026\t3\t3\t기업018-법인비용\tincome\t577\n2026\t3\t3\t기업018-법인비용\texpense\t10949929\n2026\t3\t3\t기업032-급여\texpense\t669000\n2026\t3\t3\t매트개인-우리\tincome\t15789000\n2026\t3\t3\t비용계좌-우리\tincome\t17503774\n2026\t3\t3\t비용계좌-우리\texpense\t158479503\n2026\t3\t3\t지사매출-우리\tincome\t62991903\n2026\t3\t4\t기업012-매장거래\tincome\t124594004\n2026\t3\t4\t기업012-매장거래\texpense\t3608401\n2026\t3\t4\t기업018-법인비용\tincome\t13373069\n2026\t3\t4\t기업018-법인비용\texpense\t15240\n2026\t3\t4\t기업032-급여\tincome\t5483440\n2026\t3\t4\t기업032-급여\texpense\t11897779\n2026\t3\t4\t기업040-시공비결재\tincome\t185560\n2026\t3\t4\t매트개인-우리\tincome\t47062500\n2026\t3\t4\t매트개인-우리\texpense\t5397000\n2026\t3\t4\t비용계좌-우리\tincome\t5397000\n2026\t3\t4\t비용계좌-우리\texpense\t415908709\n2026\t3\t4\t우리-외화계좌\texpense\t8500\n2026\t3\t4\t지사매출-우리\tincome\t104910511\n2026\t3\t4\t지사매출-우리\texpense\t88000\n",
+  "stderr": "",
+  "execution_time_ms": 1496
+}

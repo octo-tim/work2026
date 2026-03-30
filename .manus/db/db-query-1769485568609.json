@@ -1,0 +1,19 @@
+{
+  "query": "SELECT * FROM positions WHERE name LIKE '%임원%' OR name LIKE '%대표%' OR name LIKE '%사장%' OR name LIKE '%이사%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT * FROM positions WHERE name LIKE '%임원%' OR name LIKE '%대표%' OR name LIKE '%사장%' OR name LIKE '%이사%';",
+  "rows": [
+    {
+      "id": "4",
+      "name": "임원",
+      "description": "",
+      "isActive": "1",
+      "sortOrder": "0",
+      "createdAt": "2026-01-26 12:51:51",
+      "updatedAt": "2026-01-26 12:51:51"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tdescription\tisActive\tsortOrder\tcreatedAt\tupdatedAt\n4\t임원\t\t1\t0\t2026-01-26 12:51:51\t2026-01-26 12:51:51\n",
+  "stderr": "",
+  "execution_time_ms": 1599
+}

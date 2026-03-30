@@ -1,0 +1,36 @@
+{
+  "query": "SELECT id, division, productGroup, week1Sales, week2Sales, week3Sales, week4Sales, monthlyTarget, previousMonthSales, cumulativeSales, updatedAt FROM sales_records WHERE year = 2026 AND month = 3 AND division = 'bombom' ORDER BY productGroup;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT id, division, productGroup, week1Sales, week2Sales, week3Sales, week4Sales, monthlyTarget, previousMonthSales, cumulativeSales, updatedAt FROM sales_records WHERE year = 2026 AND month = 3 AND division = 'bombom' ORDER BY productGroup;",
+  "rows": [
+    {
+      "id": "TUY5WXlBRB98LMnCKvX6d",
+      "division": "bombom",
+      "productGroup": "본사",
+      "week1Sales": "120331790",
+      "week2Sales": "88557580",
+      "week3Sales": "89225899",
+      "week4Sales": "104666226",
+      "monthlyTarget": "478800000",
+      "previousMonthSales": "0",
+      "cumulativeSales": "402781495",
+      "updatedAt": "2026-03-30 03:58:18"
+    },
+    {
+      "id": "zqp7d1WVYZgcp2WXKa36s",
+      "division": "bombom",
+      "productGroup": "지사",
+      "week1Sales": "67929093",
+      "week2Sales": "22201362",
+      "week3Sales": "58741821",
+      "week4Sales": "54279550",
+      "monthlyTarget": "200000000",
+      "previousMonthSales": "0",
+      "cumulativeSales": "203151826",
+      "updatedAt": "2026-03-30 04:04:20"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tdivision\tproductGroup\tweek1Sales\tweek2Sales\tweek3Sales\tweek4Sales\tmonthlyTarget\tpreviousMonthSales\tcumulativeSales\tupdatedAt\nTUY5WXlBRB98LMnCKvX6d\tbombom\t본사\t120331790\t88557580\t89225899\t104666226\t478800000\t0\t402781495\t2026-03-30 03:58:18\nzqp7d1WVYZgcp2WXKa36s\tbombom\t지사\t67929093\t22201362\t58741821\t54279550\t200000000\t0\t203151826\t2026-03-30 04:04:20\n",
+  "stderr": "",
+  "execution_time_ms": 1599
+}

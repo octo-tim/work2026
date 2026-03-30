@@ -1,0 +1,48 @@
+{
+  "query": "SELECT * FROM sales_records WHERE division = 'ricoco' AND year = 2026 AND month = 2;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT * FROM sales_records WHERE division = 'ricoco' AND year = 2026 AND month = 2;",
+  "rows": [
+    {
+      "id": "pVNgFkYfcD13bZqXguz9z",
+      "userId": "1080001",
+      "division": "ricoco",
+      "productGroup": "시공매출",
+      "monthlyTarget": "45000000",
+      "previousMonthSales": "0",
+      "week1Sales": "52613010",
+      "week2Sales": "0",
+      "week3Sales": "0",
+      "week4Sales": "0",
+      "week5Sales": "0",
+      "cumulativeSales": "52613010",
+      "achievementRate": "116.9",
+      "year": "2026",
+      "month": "2",
+      "createdAt": "2026-02-12 06:09:15",
+      "updatedAt": "2026-02-13 01:38:36"
+    },
+    {
+      "id": "r_Q5hg7qReiJt9UxeyVtK",
+      "userId": "1080001",
+      "division": "ricoco",
+      "productGroup": "온라인매출",
+      "monthlyTarget": "5000000",
+      "previousMonthSales": "0",
+      "week1Sales": "5879231",
+      "week2Sales": "0",
+      "week3Sales": "0",
+      "week4Sales": "0",
+      "week5Sales": "0",
+      "cumulativeSales": "5879231",
+      "achievementRate": "117.6",
+      "year": "2026",
+      "month": "2",
+      "createdAt": "2026-02-12 06:09:16",
+      "updatedAt": "2026-02-13 01:38:36"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\tdivision\tproductGroup\tmonthlyTarget\tpreviousMonthSales\tweek1Sales\tweek2Sales\tweek3Sales\tweek4Sales\tweek5Sales\tcumulativeSales\tachievementRate\tyear\tmonth\tcreatedAt\tupdatedAt\npVNgFkYfcD13bZqXguz9z\t1080001\tricoco\t시공매출\t45000000\t0\t52613010\t0\t0\t0\t0\t52613010\t116.9\t2026\t2\t2026-02-12 06:09:15\t2026-02-13 01:38:36\nr_Q5hg7qReiJt9UxeyVtK\t1080001\tricoco\t온라인매출\t5000000\t0\t5879231\t0\t0\t0\t0\t5879231\t117.6\t2026\t2\t2026-02-12 06:09:16\t2026-02-13 01:38:36\n",
+  "stderr": "",
+  "execution_time_ms": 1733
+}

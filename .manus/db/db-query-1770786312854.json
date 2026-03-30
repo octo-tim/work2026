@@ -1,0 +1,52 @@
+{
+  "query": "SELECT userId, COUNT(*) as cnt, year, month, division FROM sales_records GROUP BY userId, year, month, division;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT userId, COUNT(*) as cnt, year, month, division FROM sales_records GROUP BY userId, year, month, division;",
+  "rows": [
+    {
+      "userId": "1",
+      "cnt": "3",
+      "year": "2026",
+      "month": "2",
+      "division": "manufacturing"
+    },
+    {
+      "userId": "1",
+      "cnt": "3",
+      "year": "2026",
+      "month": "1",
+      "division": "online"
+    },
+    {
+      "userId": "1",
+      "cnt": "2",
+      "year": "2026",
+      "month": "2",
+      "division": "bombom"
+    },
+    {
+      "userId": "1",
+      "cnt": "3",
+      "year": "2026",
+      "month": "1",
+      "division": "manufacturing"
+    },
+    {
+      "userId": "1",
+      "cnt": "3",
+      "year": "2026",
+      "month": "2",
+      "division": "online"
+    },
+    {
+      "userId": "1",
+      "cnt": "2",
+      "year": "2026",
+      "month": "1",
+      "division": "bombom"
+    }
+  ],
+  "messages": [],
+  "stdout": "userId\tcnt\tyear\tmonth\tdivision\n1\t3\t2026\t2\tmanufacturing\n1\t3\t2026\t1\tonline\n1\t2\t2026\t2\tbombom\n1\t3\t2026\t1\tmanufacturing\n1\t3\t2026\t2\tonline\n1\t2\t2026\t1\tbombom\n",
+  "stderr": "",
+  "execution_time_ms": 1514
+}

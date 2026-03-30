@@ -1,0 +1,46 @@
+{
+  "query": "SELECT COUNT(*) as total, year, month, division FROM sales_records GROUP BY year, month, division ORDER BY year DESC, month DESC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT COUNT(*) as total, year, month, division FROM sales_records GROUP BY year, month, division ORDER BY year DESC, month DESC LIMIT 20;",
+  "rows": [
+    {
+      "total": "2",
+      "year": "2026",
+      "month": "2",
+      "division": "bombom"
+    },
+    {
+      "total": "3",
+      "year": "2026",
+      "month": "2",
+      "division": "online"
+    },
+    {
+      "total": "3",
+      "year": "2026",
+      "month": "2",
+      "division": "manufacturing"
+    },
+    {
+      "total": "2",
+      "year": "2026",
+      "month": "1",
+      "division": "bombom"
+    },
+    {
+      "total": "3",
+      "year": "2026",
+      "month": "1",
+      "division": "online"
+    },
+    {
+      "total": "3",
+      "year": "2026",
+      "month": "1",
+      "division": "manufacturing"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\tyear\tmonth\tdivision\n2\t2026\t2\tbombom\n3\t2026\t2\tonline\n3\t2026\t2\tmanufacturing\n2\t2026\t1\tbombom\n3\t2026\t1\tonline\n3\t2026\t1\tmanufacturing\n",
+  "stderr": "",
+  "execution_time_ms": 1533
+}

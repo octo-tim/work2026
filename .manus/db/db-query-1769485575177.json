@@ -1,0 +1,46 @@
+{
+  "query": "SELECT * FROM positions ORDER BY sortOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT * FROM positions ORDER BY sortOrder;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "팀장",
+      "description": "",
+      "isActive": "1",
+      "sortOrder": "0",
+      "createdAt": "2026-01-26 12:51:23",
+      "updatedAt": "2026-01-26 12:51:23"
+    },
+    {
+      "id": "2",
+      "name": "팀원",
+      "description": "",
+      "isActive": "1",
+      "sortOrder": "0",
+      "createdAt": "2026-01-26 12:51:31",
+      "updatedAt": "2026-01-26 12:51:31"
+    },
+    {
+      "id": "3",
+      "name": "파트장",
+      "description": "",
+      "isActive": "1",
+      "sortOrder": "0",
+      "createdAt": "2026-01-26 12:51:38",
+      "updatedAt": "2026-01-26 12:51:38"
+    },
+    {
+      "id": "4",
+      "name": "임원",
+      "description": "",
+      "isActive": "1",
+      "sortOrder": "0",
+      "createdAt": "2026-01-26 12:51:51",
+      "updatedAt": "2026-01-26 12:51:51"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tdescription\tisActive\tsortOrder\tcreatedAt\tupdatedAt\n1\t팀장\t\t1\t0\t2026-01-26 12:51:23\t2026-01-26 12:51:23\n2\t팀원\t\t1\t0\t2026-01-26 12:51:31\t2026-01-26 12:51:31\n3\t파트장\t\t1\t0\t2026-01-26 12:51:38\t2026-01-26 12:51:38\n4\t임원\t\t1\t0\t2026-01-26 12:51:51\t2026-01-26 12:51:51\n",
+  "stderr": "",
+  "execution_time_ms": 1539
+}

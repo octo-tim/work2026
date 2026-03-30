@@ -1,0 +1,80 @@
+{
+  "query": "SELECT month, week, type, COUNT(*) as cnt, SUM(amount) as total FROM financial_records WHERE year = 2026 AND month = 1 GROUP BY month, week, type ORDER BY week, type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT month, week, type, COUNT(*) as cnt, SUM(amount) as total FROM financial_records WHERE year = 2026 AND month = 1 GROUP BY month, week, type ORDER BY week, type;",
+  "rows": [
+    {
+      "month": "1",
+      "week": "1",
+      "type": "income",
+      "cnt": "6",
+      "total": "204789595"
+    },
+    {
+      "month": "1",
+      "week": "1",
+      "type": "expense",
+      "cnt": "2",
+      "total": "55398556"
+    },
+    {
+      "month": "1",
+      "week": "2",
+      "type": "income",
+      "cnt": "8",
+      "total": "203813528"
+    },
+    {
+      "month": "1",
+      "week": "2",
+      "type": "expense",
+      "cnt": "5",
+      "total": "280718500"
+    },
+    {
+      "month": "1",
+      "week": "3",
+      "type": "income",
+      "cnt": "7",
+      "total": "229518072"
+    },
+    {
+      "month": "1",
+      "week": "3",
+      "type": "expense",
+      "cnt": "4",
+      "total": "200807254"
+    },
+    {
+      "month": "1",
+      "week": "4",
+      "type": "income",
+      "cnt": "5",
+      "total": "253946227"
+    },
+    {
+      "month": "1",
+      "week": "4",
+      "type": "expense",
+      "cnt": "4",
+      "total": "296914779"
+    },
+    {
+      "month": "1",
+      "week": "5",
+      "type": "income",
+      "cnt": "6",
+      "total": "131967629"
+    },
+    {
+      "month": "1",
+      "week": "5",
+      "type": "expense",
+      "cnt": "1",
+      "total": "293748950"
+    }
+  ],
+  "messages": [],
+  "stdout": "month\tweek\ttype\tcnt\ttotal\n1\t1\tincome\t6\t204789595\n1\t1\texpense\t2\t55398556\n1\t2\tincome\t8\t203813528\n1\t2\texpense\t5\t280718500\n1\t3\tincome\t7\t229518072\n1\t3\texpense\t4\t200807254\n1\t4\tincome\t5\t253946227\n1\t4\texpense\t4\t296914779\n1\t5\tincome\t6\t131967629\n1\t5\texpense\t1\t293748950\n",
+  "stderr": "",
+  "execution_time_ms": 1922
+}

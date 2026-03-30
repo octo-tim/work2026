@@ -1,0 +1,1 @@
+ALTER TABLE `contract_records` ADD `brand` varchar(50) DEFAULT 'bombom' NOT NULL;

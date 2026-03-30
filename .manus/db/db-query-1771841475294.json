@@ -1,0 +1,110 @@
+{
+  "query": "SELECT id, name, openId FROM users LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT id, name, openId FROM users LIMIT 20;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "경식 윤",
+      "openId": "faJYzqDrbUnfSvhyqq2exo"
+    },
+    {
+      "id": "390243",
+      "name": "Chuhyun CHO",
+      "openId": "bUwvDywRYMKcoiF2dniG3T"
+    },
+    {
+      "id": "390252",
+      "name": "cofla1026",
+      "openId": "JwBmCaBpBKnf7LY46YnJSL"
+    },
+    {
+      "id": "390256",
+      "name": "YSJI",
+      "openId": "NUQ9P8CN7S6UvJvF2DE2aD"
+    },
+    {
+      "id": "390269",
+      "name": "jkkim",
+      "openId": "R3TmZkV2Z7PmUoMtMyJWy2"
+    },
+    {
+      "id": "390277",
+      "name": "htchoi",
+      "openId": "GjpQTRDJPmZ35k5YmD6JzR"
+    },
+    {
+      "id": "390280",
+      "name": "정은 이",
+      "openId": "ZE2eSxUzbcfuwjYzNMddmH"
+    },
+    {
+      "id": "390299",
+      "name": "crsong",
+      "openId": "mAqm58Cso7Nd46YY6vMjgD"
+    },
+    {
+      "id": "390333",
+      "name": "kjpark",
+      "openId": "ECsRoNbHUAoffPbfFaBBw2"
+    },
+    {
+      "id": "420063",
+      "name": "sykim",
+      "openId": "kMYNWRrr3GNCAQBSbagSSN"
+    },
+    {
+      "id": "450001",
+      "name": "swyun",
+      "openId": "JXQ6KVazT34E4nJSJeKBjN"
+    },
+    {
+      "id": "450200",
+      "name": "syjung",
+      "openId": "hcq8V23aiyGpVEvHJWoyYu"
+    },
+    {
+      "id": "510002",
+      "name": "인석 오",
+      "openId": "5za34k63TJmvdgLiTFKvdQ"
+    },
+    {
+      "id": "660001",
+      "name": "han1367",
+      "openId": "gw63PbydkkH6V4Sz5Fh3mL"
+    },
+    {
+      "id": "660028",
+      "name": "jhchoi",
+      "openId": "i3vmte6dqRiRZsrH6h7sQJ"
+    },
+    {
+      "id": "750015",
+      "name": "isoh",
+      "openId": "eknqJSj58rvpmxrJpX58dJ"
+    },
+    {
+      "id": "990003",
+      "name": "상순 백",
+      "openId": "S28pzh7RYsgWRmjRGEXhWr"
+    },
+    {
+      "id": "1020001",
+      "name": "주홍 이",
+      "openId": "6yFEvYwLvLxVyFpmZjWLbB"
+    },
+    {
+      "id": "1080001",
+      "name": "bjseo",
+      "openId": "h5e9b2AvHLCbdwXxQ3DR6T"
+    },
+    {
+      "id": "5670055",
+      "name": "rlarod1110",
+      "openId": "RoT5DKTAArNDgZoNYb7oXE"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\topenId\n1\t경식 윤\tfaJYzqDrbUnfSvhyqq2exo\n390243\tChuhyun CHO\tbUwvDywRYMKcoiF2dniG3T\n390252\tcofla1026\tJwBmCaBpBKnf7LY46YnJSL\n390256\tYSJI\tNUQ9P8CN7S6UvJvF2DE2aD\n390269\tjkkim\tR3TmZkV2Z7PmUoMtMyJWy2\n390277\thtchoi\tGjpQTRDJPmZ35k5YmD6JzR\n390280\t정은 이\tZE2eSxUzbcfuwjYzNMddmH\n390299\tcrsong\tmAqm58Cso7Nd46YY6vMjgD\n390333\tkjpark\tECsRoNbHUAoffPbfFaBBw2\n420063\tsykim\tkMYNWRrr3GNCAQBSbagSSN\n450001\tswyun\tJXQ6KVazT34E4nJSJeKBjN\n450200\tsyjung\thcq8V23aiyGpVEvHJWoyYu\n510002\t인석 오\t5za34k63TJmvdgLiTFKvdQ\n660001\than1367\tgw63PbydkkH6V4Sz5Fh3mL\n660028\tjhchoi\ti3vmte6dqRiRZsrH6h7sQJ\n750015\tisoh\teknqJSj58rvpmxrJpX58dJ\n990003\t상순 백\tS28pzh7RYsgWRmjRGEXhWr\n1020001\t주홍 이\t6yFEvYwLvLxVyFpmZjWLbB\n1080001\tbjseo\th5e9b2AvHLCbdwXxQ3DR6T\n5670055\trlarod1110\tRoT5DKTAArNDgZoNYb7oXE\n",
+  "stderr": "",
+  "execution_time_ms": 1530
+}

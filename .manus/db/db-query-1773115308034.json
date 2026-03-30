@@ -1,0 +1,16 @@
+{
+  "query": "SELECT \n  (SELECT SUM(amount) FROM financial_records WHERE year = 2026 AND month = 1 AND type = 'income') as jan_income,\n  (SELECT SUM(amount) FROM financial_records WHERE year = 2026 AND month = 1 AND type = 'expense') as jan_expense,\n  (SELECT openingBalance FROM financial_balances WHERE year = 2026 AND month = 2) as feb_opening_balance,\n  (SELECT openingBalance FROM financial_balances WHERE year = 2026 AND month = 1) as jan_opening_balance;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2WtSvavvJuwbDci.a2d326cca25f --database LBTFCENZjm3KAvBMhoEbjE --execute SELECT \n  (SELECT SUM(amount) FROM financial_records WHERE year = 2026 AND month = 1 AND type = 'income') as jan_income,\n  (SELECT SUM(amount) FROM financial_records WHERE year = 2026 AND month = 1 AND type = 'expense') as jan_expense,\n  (SELECT openingBalance FROM financial_balances WHERE year = 2026 AND month = 2) as feb_opening_balance,\n  (SELECT openingBalance FROM financial_balances WHERE year = 2026 AND month = 1) as jan_opening_balance;",
+  "rows": [
+    {
+      "jan_income": "1024035051",
+      "jan_expense": "1127588039",
+      "feb_opening_balance": "208769087",
+      "jan_opening_balance": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "jan_income\tjan_expense\tfeb_opening_balance\tjan_opening_balance\n1024035051\t1127588039\t208769087\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 1522
+}
